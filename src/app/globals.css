@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Header links: explicit fallbacks so we never show system default blue if a
+   * stylesheet is slow or utilities fail to apply to a client subtree.
+   */
+  header a {
+    color: rgb(var(--color-dgray-rgb) / 0.92);
+    text-decoration: none;
+  }
+
+  header a:hover {
+    color: rgb(var(--color-navy-rgb));
+  }
+
+  header a:focus-visible {
+    outline: 2px solid rgb(var(--color-navy-rgb) / 0.25);
+    outline-offset: 2px;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    min-height: 100vh;
+    background-color: rgb(var(--color-lgray-rgb));
+    color: rgb(var(--color-dgray-rgb));
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+  }
+
+  ::selection {
+    @apply bg-navy/15 text-navy;
+  }
+}
+
+@layer components {
+  /** Vertical rhythm for marketing sections (desktop-first, generous on large screens). */
+  .section-y {
+    @apply scroll-mt-24 py-24 sm:scroll-mt-28 sm:py-28 lg:py-32;
+  }
+}

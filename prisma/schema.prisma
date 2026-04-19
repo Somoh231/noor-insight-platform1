@@ -1,0 +1,181 @@
+// Prisma schema: Supabase PostgreSQL (direct connection recommended for migrations).
+// https://www.prisma.io/docs/guides/database/supabase
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organisation {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users          User[]
+  zones          Zone[]
+  transformers   Transformer[]
+  customers      Customer[]
+  meters         Meter[]
+  revenueRecords RevenueRecord[]
+  workOrders     WorkOrder[]
+  outages        Outage[]
+  reports        Report[]
+}
+
+model User {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  name             String?
+  passwordHash     String?
+  role             String
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  assignedWorkOrders WorkOrder[] @relation("AssignedTechnician")
+
+  @@index([organisationId])
+}
+
+model Zone {
+  id               String   @id @default(cuid())
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name             String
+  code             String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  transformers Transformer[]
+  customers    Customer[]
+
+  @@unique([organisationId, name])
+  @@index([organisationId])
+}
+
+model Transformer {
+  id               String   @id @default(cuid())
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  zoneId           String
+  zone             Zone @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  externalId       String
+  name             String?
+  lat              Float?
+  lng              Float?
+  riskTier         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([organisationId, externalId])
+  @@index([organisationId])
+  @@index([zoneId])
+}
+
+model Customer {
+  id               String   @id @default(cuid())
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  zoneId           String?
+  zone             Zone? @relation(fields: [zoneId], references: [id], onDelete: SetNull)
+  accountNumber    String
+  name             String?
+  address          String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  meters Meter[]
+
+  @@unique([organisationId, accountNumber])
+  @@index([organisationId])
+  @@index([zoneId])
+}
+
+model Meter {
+  id               String   @id @default(cuid())
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  customerId       String
+  customer         Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  serialNumber     String
+  meterType        String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([organisationId, serialNumber])
+  @@index([organisationId])
+  @@index([customerId])
+}
+
+model RevenueRecord {
+  id               String   @id @default(cuid())
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  period           DateTime @db.Date
+  amount           Decimal  @db.Decimal(18, 2)
+  currency         String   @default("USD")
+  category         String   @default("TOTAL")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([organisationId, period, category])
+  @@index([organisationId, period])
+}
+
+model WorkOrder {
+  id               String   @id @default(cuid())
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  number           String
+  title            String
+  site             String
+  district         String
+  priority         String
+  status           String
+  assignedUserId   String?
+  assignedUser     User? @relation("AssignedTechnician", fields: [assignedUserId], references: [id], onDelete: SetNull)
+  createdAt        DateTime @default(now())
+  dueAt            DateTime
+  completedAt      DateTime?
+  updatedAt        DateTime @updatedAt
+
+  @@unique([organisationId, number])
+  @@index([organisationId, status])
+  @@index([assignedUserId])
+}
+
+model Outage {
+  id                String   @id @default(cuid())
+  organisationId    String
+  organisation      Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  district          String
+  startedAt         DateTime
+  customersAffected Int
+  status            String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([organisationId, startedAt])
+}
+
+model Report {
+  id               String   @id @default(cuid())
+  organisationId   String
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  type             String
+  title            String
+  periodStart      DateTime?
+  periodEnd        DateTime?
+  metadata         Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([organisationId, type])
+}
