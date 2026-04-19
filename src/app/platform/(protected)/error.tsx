@@ -40,7 +40,7 @@ export default function PlatformProtectedError({
           Retry
         </Button>
         <ButtonLink href="/platform/dashboard" variant="secondary">
-          Executive dashboard
+          Executive Overview
         </ButtonLink>
         <Link
           href="/platform/login"

@@ -40,6 +40,10 @@ export function HomeHero() {
               {BRAND_STATEMENT}
             </p>
 
+            <p className="mt-5 max-w-2xl border-l-2 border-gold/70 pl-4 text-sm font-semibold leading-relaxed tracking-tight text-navy sm:text-base">
+              Upload utility data. Identify recoverable revenue. Execute action.
+            </p>
+
             <h1
               id="home-hero-title"
               className="mt-6 text-balance text-display-sm font-semibold text-navy sm:mt-7 sm:text-display lg:text-display-lg"
@@ -60,6 +64,9 @@ export function HomeHero() {
               </ButtonLink>
               <ButtonLink href="/solutions" variant="secondary">
                 Review solution areas
+              </ButtonLink>
+              <ButtonLink href="/platform/dashboard" variant="secondary" className="border-gold/35 bg-gold/[0.08]">
+                See the operations console
               </ButtonLink>
             </div>
           </div>

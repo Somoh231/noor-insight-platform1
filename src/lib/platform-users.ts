@@ -1,3 +1,8 @@
+import {
+  EMAIL_DEMO_EXECUTIVE,
+  EMAIL_DEMO_FIELD,
+  EMAIL_DEMO_OPERATIONS,
+} from "@/lib/constants";
 import type { PlatformRole } from "@/lib/platform-roles";
 
 export type PlatformUserRecord = {
@@ -14,19 +19,19 @@ export type PlatformUserRecord = {
 export const EVALUATION_PLATFORM_USERS: readonly PlatformUserRecord[] = [
   {
     id: "usr_exec",
-    email: "executive@noorinsight.local",
+    email: EMAIL_DEMO_EXECUTIVE,
     name: "Executive User",
     role: "EXECUTIVE",
   },
   {
     id: "usr_ops",
-    email: "operations@noorinsight.local",
+    email: EMAIL_DEMO_OPERATIONS,
     name: "Operations User",
     role: "OPERATIONS",
   },
   {
     id: "usr_field",
-    email: "field@noorinsight.local",
+    email: EMAIL_DEMO_FIELD,
     name: "Field User",
     role: "FIELD",
   },

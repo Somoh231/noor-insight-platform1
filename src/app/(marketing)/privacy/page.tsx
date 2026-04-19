@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { APP_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import { APP_NAME, EMAIL_SUPPORT } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -64,9 +64,9 @@ export default function PrivacyPage() {
               to{" "}
               <a
                 className="font-semibold text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy/50"
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${APP_NAME}: privacy inquiry`)}`}
+                href={`mailto:${EMAIL_SUPPORT}?subject=${encodeURIComponent(`${APP_NAME}: privacy inquiry`)}`}
               >
-                {CONTACT_EMAIL}
+                {EMAIL_SUPPORT}
               </a>
               .
             </p>

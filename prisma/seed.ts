@@ -35,7 +35,7 @@ async function main() {
 
   const execUser = await prisma.user.create({
     data: {
-      email: "executive@noorinsight.local",
+      email: "demo+executive@noorinsight.com",
       name: "Executive User",
       passwordHash,
       role: "EXECUTIVE",
@@ -45,7 +45,7 @@ async function main() {
 
   const opsUser = await prisma.user.create({
     data: {
-      email: "operations@noorinsight.local",
+      email: "demo+operations@noorinsight.com",
       name: "Operations User",
       passwordHash,
       role: "OPERATIONS",
@@ -55,7 +55,7 @@ async function main() {
 
   const fieldUser = await prisma.user.create({
     data: {
-      email: "field@noorinsight.local",
+      email: "demo+field@noorinsight.com",
       name: "Field User",
       passwordHash,
       role: "FIELD",

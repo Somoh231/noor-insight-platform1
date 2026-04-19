@@ -4,7 +4,8 @@ import {
   APP_NAME,
   BRAND_CLOSING_TAGLINE,
   BRAND_STATEMENT,
-  CONTACT_EMAIL,
+  EMAIL_HELLO,
+  EMAIL_PARTNERSHIPS,
   PRODUCT_FOR_UTILITIES,
 } from "@/lib/constants";
 import { primaryNav } from "@/lib/routes";
@@ -42,14 +43,23 @@ export function SiteFooter() {
               </p>
               <a
                 className="mt-3 inline-flex text-sm font-semibold text-lgray underline decoration-lgray/25 underline-offset-4 transition hover:decoration-gold/60"
-                href={`mailto:${CONTACT_EMAIL}`}
+                href={`mailto:${EMAIL_HELLO}`}
               >
-                {CONTACT_EMAIL}
+                {EMAIL_HELLO}
               </a>
               <p className="mt-3 text-xs leading-relaxed text-lgray/60">
-                Prefer email for scheduling. Briefings are structured and
-                time-boxed.
+                General contact and scheduling. Briefings and demos: use the contact page or
+                request form for a structured first conversation.
               </p>
+              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold/90">
+                Strategic partnerships
+              </p>
+              <a
+                className="mt-2 inline-flex text-sm font-semibold text-lgray underline decoration-lgray/25 underline-offset-4 transition hover:decoration-gold/60"
+                href={`mailto:${EMAIL_PARTNERSHIPS}`}
+              >
+                {EMAIL_PARTNERSHIPS}
+              </a>
             </div>
           </div>
 

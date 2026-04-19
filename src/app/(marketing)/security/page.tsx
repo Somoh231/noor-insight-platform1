@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { APP_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import { APP_NAME, EMAIL_SUPPORT } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Security",
@@ -67,9 +67,9 @@ export default function SecurityPage() {
             <p>
               <a
                 className="font-semibold text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy/50"
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${APP_NAME}: security disclosure`)}`}
+                href={`mailto:${EMAIL_SUPPORT}?subject=${encodeURIComponent(`${APP_NAME}: security disclosure`)}`}
               >
-                {CONTACT_EMAIL}
+                {EMAIL_SUPPORT}
               </a>
             </p>
           </section>

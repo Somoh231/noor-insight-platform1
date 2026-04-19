@@ -8,7 +8,10 @@ import {
   EnterpriseMegaNavDesktop,
   EnterpriseMegaNavMobileAccordion,
 } from "@/components/layout/enterprise-mega-nav";
+import { EMAIL_BRIEFING } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+
+const briefingMailto = `mailto:${EMAIL_BRIEFING}?subject=${encodeURIComponent("Noor Insight: briefing request")}`;
 
 /** 80px — within 76–84px enterprise nav band */
 const BAR_HEIGHT = "h-20";
@@ -99,9 +102,9 @@ export function SiteHeader() {
           <Link href="/platform/login" className={platformAccessClass}>
             Platform Access
           </Link>
-          <Link href="/contact" className={requestBriefingClass}>
+          <a href={briefingMailto} className={requestBriefingClass}>
             Request briefing
-          </Link>
+          </a>
 
           <button
             type="button"
@@ -201,8 +204,8 @@ export function SiteHeader() {
             >
               Platform Access
             </Link>
-            <Link
-              href="/contact"
+            <a
+              href={briefingMailto}
               className={cn(
                 "flex w-full items-center justify-center rounded-lg border border-navy/15 bg-lgray px-4 py-3 text-[15px] font-semibold text-navy no-underline",
                 "transition-colors hover:border-navy/25 hover:bg-panel",
@@ -211,7 +214,7 @@ export function SiteHeader() {
               onClick={() => setMenuOpen(false)}
             >
               Request briefing
-            </Link>
+            </a>
           </div>
         </nav>
       </div>

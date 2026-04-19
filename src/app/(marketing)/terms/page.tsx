@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { APP_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import { APP_NAME, EMAIL_SUPPORT } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Terms of use",
@@ -90,9 +90,9 @@ export default function TermsPage() {
             Last updated April 2026. Questions:{" "}
             <a
               className="font-semibold text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy/50"
-              href={`mailto:${CONTACT_EMAIL}`}
+              href={`mailto:${EMAIL_SUPPORT}?subject=${encodeURIComponent(`${APP_NAME}: terms question`)}`}
             >
-              {CONTACT_EMAIL}
+              {EMAIL_SUPPORT}
             </a>
             .
           </p>

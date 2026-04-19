@@ -13,6 +13,38 @@ export type RevenueRecoveryOpportunity = {
 
 export const totalRecoverablePipelineUsd = 4_280_000;
 
+/** Where money leaks — category roll-up for executive ROI narrative (demo). */
+export const revenueLeakageByCategory = [
+  {
+    id: "cat-bill",
+    label: "Billing & metering drift",
+    sharePct: 34,
+    estimatedRecoverableUsd: 1_450_000,
+    hint: "Cycle gaps, vending vs. reads, estimate churn",
+  },
+  {
+    id: "cat-tech",
+    label: "Technical & unmetered load",
+    sharePct: 28,
+    estimatedRecoverableUsd: 1_200_000,
+    hint: "Transformer overload, tap-offs, CT drift",
+  },
+  {
+    id: "cat-coll",
+    label: "Collections & credit",
+    sharePct: 22,
+    estimatedRecoverableUsd: 940_000,
+    hint: "Aging, large-account exposure, write-off risk",
+  },
+  {
+    id: "cat-out",
+    label: "Outage-linked revenue",
+    sharePct: 16,
+    estimatedRecoverableUsd: 690_000,
+    hint: "SAIDI × tariff, uncompensated minutes",
+  },
+] as const;
+
 export const revenueRecoveryOpportunities: readonly RevenueRecoveryOpportunity[] = [
   {
     id: "opp-1",
@@ -66,6 +98,8 @@ export const revenueRecoveryOpportunities: readonly RevenueRecoveryOpportunity[]
   },
 ] as const;
 
+export type ActionStatus = "Not started" | "In review" | "Blocked" | "Ready" | "Scheduled";
+
 export type LeadershipAction = {
   id: string;
   priority: "critical" | "high" | "standard";
@@ -73,6 +107,9 @@ export type LeadershipAction = {
   description: string;
   impactLabel: string;
   href: string;
+  owner: string;
+  dueDate: string;
+  status: ActionStatus;
 };
 
 export const leadershipActions: readonly LeadershipAction[] = [
@@ -84,6 +121,9 @@ export const leadershipActions: readonly LeadershipAction[] = [
       "Field pack is ready. Legal and revenue protection sign-off unlocks a coordinated billing + inspection sweep.",
     impactLabel: "~$1.1M recoverable (90-day window)",
     href: "/platform/revenue-recovery",
+    owner: "Chief Revenue Officer",
+    dueDate: "Apr 22, 2026",
+    status: "Ready",
   },
   {
     id: "act-2",
@@ -92,7 +132,10 @@ export const leadershipActions: readonly LeadershipAction[] = [
     description:
       "New vending file received from partner SFTP. Upload validates token reconciliation for the last close.",
     impactLabel: "Closes 6.4% of unexplained variance",
-    href: "/platform/reporting",
+    href: "/platform/upload",
+    owner: "Revenue Operations",
+    dueDate: "Apr 19, 2026",
+    status: "In review",
   },
   {
     id: "act-3",
@@ -102,6 +145,9 @@ export const leadershipActions: readonly LeadershipAction[] = [
       "Pack combines outage KPIs, planned capital, and customer impact narrative for next oversight session.",
     impactLabel: "License review in 21 days",
     href: "/platform/reporting",
+    owner: "Regulatory Affairs",
+    dueDate: "Apr 28, 2026",
+    status: "Scheduled",
   },
   {
     id: "act-4",
@@ -110,7 +156,67 @@ export const leadershipActions: readonly LeadershipAction[] = [
     description:
       "National ID batch matched 2,180 accounts. Approve merge rules before pushing to master registry.",
     impactLabel: "Reduces dispute volume",
-    href: "/platform/loss-intelligence",
+    href: "/platform/customer-meter-registry",
+    owner: "MDM / CIS Steward",
+    dueDate: "May 02, 2026",
+    status: "Not started",
+  },
+  {
+    id: "act-5",
+    priority: "high",
+    title: "Authorize Bushrod inspection surge (night load)",
+    description:
+      "Grid intelligence flagged overload + vending drift overlap. Crew roster is pre-cleared; needs capital sign-off for overtime.",
+    impactLabel: "~$890K tied to opp #2",
+    href: "/platform/grid-intelligence",
+    owner: "Field Operations Director",
+    dueDate: "Apr 20, 2026",
+    status: "Blocked",
+  },
+  {
+    id: "act-6",
+    priority: "standard",
+    title: "Publish weekly leakage digest to board pack",
+    description:
+      "Automated narrative from Action Center + Revenue Recovery Engine; one-click PDF for audit trail.",
+    impactLabel: "Governance cadence",
+    href: "/platform/reporting",
+    owner: "Strategy Office",
+    dueDate: "Apr 25, 2026",
+    status: "In review",
+  },
+] as const;
+
+/** Demo: tie recent outage districts to loss hotspots for the Hotspot Map page narrative. */
+export const outageLeakCorrelation: readonly {
+  district: string;
+  leakSignal: string;
+  customersAffected: number;
+  estRevenueAtRiskUsd: number;
+}[] = [
+  {
+    district: "Paynesville",
+    leakSignal: "High prepaid drift + active outage",
+    customersAffected: 12_400,
+    estRevenueAtRiskUsd: 420_000,
+  },
+  {
+    district: "Sinkor feeder group",
+    leakSignal: "Postpaid aging spike during containment",
+    customersAffected: 6_200,
+    estRevenueAtRiskUsd: 185_000,
+  },
+  {
+    district: "Buchanan substation",
+    leakSignal: "Industrial tariff exposure vs. minutes off",
+    customersAffected: 3_050,
+    estRevenueAtRiskUsd: 96_000,
+  },
+  {
+    district: "Gbarnga north",
+    leakSignal: "Rural loss baseline + restoration lag",
+    customersAffected: 1_780,
+    estRevenueAtRiskUsd: 54_000,
   },
 ] as const;
 

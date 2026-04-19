@@ -4,6 +4,7 @@ import { DashboardPanel } from "@/components/dashboard/dashboard-panel";
 import { LossHotspotMap } from "@/components/dashboard/loss-hotspot-map";
 import { PlatformPageHeader } from "@/components/ui/platform-page-header";
 import {
+  revenueLeakageByCategory,
   revenueRecoveryOpportunities,
   totalRecoverablePipelineUsd,
 } from "@/lib/demo-commercial-wedge";
@@ -31,15 +32,12 @@ export function RevenueRecoveryView() {
           </span>
         }
         actions={
-          <button
-            type="button"
-            className="rounded-lg border border-navy/15 bg-lgray px-3 py-2 text-xs font-semibold text-navy/70 opacity-60"
-            disabled
-            aria-disabled="true"
-            title="Upload center ships in a later slice"
+          <Link
+            href="/platform/upload"
+            className="rounded-lg border border-navy/15 bg-lgray px-3 py-2 text-xs font-semibold text-navy transition hover:bg-panel focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy/30"
           >
-            Feed new data
-          </button>
+            Data upload center
+          </Link>
         }
       />
 
@@ -73,13 +71,36 @@ export function RevenueRecoveryView() {
           <p className="mt-3 text-2xl font-semibold text-navy">2 critical</p>
           <p className="mt-1 text-sm text-dgray/70">Actions awaiting sign-off this week.</p>
           <Link
-            href="/platform/dashboard"
+            href="/platform/action-center"
             className="mt-4 inline-flex text-sm font-semibold text-gold underline-offset-4 hover:underline"
           >
-            Executive dashboard →
+            Open Action Center →
           </Link>
         </div>
       </div>
+
+      <DashboardPanel
+        title="Leak detection — where money leaves first"
+        subtitle="Category roll-up reconciles billing, metering, collections, and outage economics into one leakage model (evaluation weights)."
+      >
+        <div className="grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4">
+          {revenueLeakageByCategory.map((row) => (
+            <div
+              key={row.id}
+              className="rounded-xl border border-navy/[0.07] bg-lgray/40 p-4 ring-1 ring-navy/[0.03]"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-dgray/50">
+                {row.label}
+              </p>
+              <p className="mt-2 text-2xl font-semibold tabular-nums text-navy">{row.sharePct}%</p>
+              <p className="mt-1 text-sm font-semibold tabular-nums text-gold">
+                {formatCurrency(row.estimatedRecoverableUsd, { notation: "compact" })}
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-dgray/65">{row.hint}</p>
+            </div>
+          ))}
+        </div>
+      </DashboardPanel>
 
       <DashboardPanel
         title="Ranked revenue opportunities"

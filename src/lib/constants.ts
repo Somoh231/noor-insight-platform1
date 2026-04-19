@@ -18,8 +18,24 @@ export const PRODUCT_FOR_UTILITIES = "Noor Insight for Utilities";
 
 export const POWERED_BY_BRAND = "Powered by Noor Insight";
 
-/** Public inquiries. Replace when production mailbox is finalized. */
-export const CONTACT_EMAIL = "briefings@noorinsight.com";
+/** Public and product mailboxes (@noorinsight.com). */
+export const EMAIL_HELLO = "hello@noorinsight.com";
+export const EMAIL_BRIEFING = "briefing@noorinsight.com";
+export const EMAIL_PARTNERSHIPS = "partnerships@noorinsight.com";
+export const EMAIL_SUPPORT = "support@noorinsight.com";
+/** Shown in the platform shell for evaluation / demo sessions. */
+export const EMAIL_DEMO = "demo@noorinsight.com";
+
+/**
+ * Distinct identities for seeded evaluation users (unique in DB).
+ * Plus-addressing delivers to the demo mailbox where supported.
+ */
+export const EMAIL_DEMO_EXECUTIVE = "demo+executive@noorinsight.com";
+export const EMAIL_DEMO_OPERATIONS = "demo+operations@noorinsight.com";
+export const EMAIL_DEMO_FIELD = "demo+field@noorinsight.com";
+
+/** @deprecated Prefer `EMAIL_HELLO` or a channel-specific constant. */
+export const CONTACT_EMAIL = EMAIL_HELLO;
 
 const DEFAULT_PUBLIC_URL = "http://localhost:3000";
 
