@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import { ButtonLink, Eyebrow, Lede, Section } from "@/components/ds";
-import { HomeHeroChart } from "./home-hero-chart";
+import { HomeHeroFigure } from "./home-hero-figure";
 
 /**
  * Quiet staggered enter animation. 180ms opacity fade + 4px translateY,
@@ -85,7 +85,7 @@ export function HomeHero() {
         </div>
 
         <Reveal delay={220} className="mt-2 lg:mt-10">
-          <HomeHeroChart />
+          <HomeHeroFigure />
         </Reveal>
       </div>
     </Section>
