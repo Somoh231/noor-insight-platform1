@@ -76,22 +76,39 @@
   }
 
   /**
-   * Hero-figure signal dots: quiet amber pulse at transformer nodes.
-   * 2800ms cycle, opacity 0.25 → 1 → 0.25, staggered via
-   * animation-delay on each element's inline style.
+   * Hero constellation: three amber points of light on a warm paper grid.
+   * The dot itself breathes (opacity), and a soft halo ring expands and
+   * fades on a slower cycle. Both cycles share the per-element
+   * animation-delay so each point feels like one considered source.
    */
   @keyframes ni-signal-pulse {
     0%,
     100% {
-      opacity: 0.25;
+      opacity: 0.35;
     }
     50% {
       opacity: 1;
     }
   }
+  @keyframes ni-signal-halo {
+    0% {
+      opacity: 0.55;
+      transform: scale(0.4);
+    }
+    80%,
+    100% {
+      opacity: 0;
+      transform: scale(1.8);
+    }
+  }
   .ni-signal-dot {
-    animation: ni-signal-pulse 2800ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: ni-signal-pulse 3200ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
     transform-origin: center;
+  }
+  .ni-signal-halo {
+    animation: ni-signal-halo 3200ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transform-origin: center;
+    transform-box: fill-box;
   }
 
   /**
@@ -107,6 +124,10 @@
     .ni-signal-dot {
       animation: none !important;
       opacity: 0.75 !important;
+    }
+    .ni-signal-halo {
+      animation: none !important;
+      opacity: 0 !important;
     }
   }
 }
