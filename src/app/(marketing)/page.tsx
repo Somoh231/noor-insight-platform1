@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { HomePageSections } from "@/components/marketing/home";
+import { DesignSystemPreview } from "@/components/marketing/design-system-preview";
 import { APP_NAME } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Noor Insight for Utilities",
-  description: `${APP_NAME} helps electricity providers reduce losses, improve collections, detect theft, and modernize operations through governed data. Noor Insight turns operational data into clear action.`,
+  title: `${APP_NAME} — design system preview`,
+  description:
+    "Deliverable 2 of the Noor Insight revamp: design tokens and primitives rendered on the live page. The full home page content lands in Deliverable 3.",
 };
 
 export default function HomePage() {
-  return <HomePageSections />;
+  return <DesignSystemPreview />;
 }

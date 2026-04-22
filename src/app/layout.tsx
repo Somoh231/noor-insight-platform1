@@ -1,24 +1,35 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import { defaultMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import "@/styles/tokens.css";
 import "./globals.css";
 
-const inter = Inter({
+const sans = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-sans",
   adjustFontFallback: true,
+});
+
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
+  weight: ["400", "500", "600"],
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = defaultMetadata;
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F5F5F5" },
-    { media: "(prefers-color-scheme: dark)", color: "#1A3C5E" },
-  ],
+  themeColor: "#F6F2EA",
   width: "device-width",
   initialScale: 1,
 };
@@ -29,10 +40,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={cn("antialiased", inter.className)}>
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={cn(sans.variable, serif.variable, mono.variable)}
+    >
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

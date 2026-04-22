@@ -3,27 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  /**
-   * Header links: explicit fallbacks so we never show system default blue if a
-   * stylesheet is slow or utilities fail to apply to a client subtree.
-   */
-  header a {
-    color: rgb(var(--color-dgray-rgb) / 0.92);
-    text-decoration: none;
-  }
-
-  header a:hover {
-    color: rgb(var(--color-navy-rgb));
-  }
-
-  header a:focus-visible {
-    outline: 2px solid rgb(var(--color-navy-rgb) / 0.25);
-    outline-offset: 2px;
-  }
-
   html {
     @apply scroll-smooth antialiased;
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -36,22 +20,58 @@
     margin: 0;
     min-height: 100dvh;
     min-height: 100vh;
-    background-color: rgb(var(--color-lgray-rgb));
-    color: rgb(var(--color-dgray-rgb));
-    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings:
-      "kern" 1,
-      "liga" 1;
+    @apply bg-page text-ink font-sans text-body;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /**
+   * Base type roles. Pages should prefer semantic tags; components compose
+   * these via the /components/ds primitives.
+   */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-ink;
+    text-wrap: balance;
+  }
+
+  h1, h2 {
+    @apply font-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: rgb(var(--color-line-rgb));
+    transition: color var(--dur-quick) var(--ease-standard),
+                text-decoration-color var(--dur-quick) var(--ease-standard);
+  }
+  a:hover {
+    color: rgb(var(--color-accent-rgb));
+    text-decoration-color: rgb(var(--color-accent-rgb));
+  }
+  a:focus-visible {
+    outline: 2px solid rgb(var(--color-accent-rgb));
+    outline-offset: 2px;
+    border-radius: var(--radius-1);
   }
 
   ::selection {
-    @apply bg-navy/15 text-navy;
+    background: rgb(var(--color-accent-tint-rgb));
+    color: rgb(var(--color-ink-rgb));
   }
-}
 
-@layer components {
-  /** Vertical rhythm for marketing sections (desktop-first, generous on large screens). */
-  .section-y {
-    @apply scroll-mt-24 py-24 sm:scroll-mt-28 sm:py-28 lg:py-32;
+  /**
+   * Tabular numerals for any element carrying institutional data.
+   */
+  .tabular {
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
   }
 }

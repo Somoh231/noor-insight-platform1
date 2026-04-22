@@ -1,43 +1,56 @@
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
- * Official NOOR INSIGHT lockup (trimmed transparent PNG, wide aspect). Footer, shell, and auth.
+ * Noor Insight wordmark. Rendered typographically (no image) so it stays
+ * crisp at every size and inherits type loading. Amber period is the only
+ * accent flourish permitted on the mark.
  */
 export function BrandLogo({
   className,
   href = "/",
-  heightClass = "h-8 sm:h-9",
+  size = "md",
+  tone = "ink",
 }: {
   className?: string;
   href?: string;
-  /** Tailwind height classes; width follows intrinsic aspect ratio. */
-  heightClass?: string;
+  size?: "sm" | "md" | "lg";
+  /** `ink` for the warm page; `paper` for dark surfaces (footer). */
+  tone?: "ink" | "paper";
 }) {
+  const sizeClass =
+    size === "sm" ? "text-xl" : size === "lg" ? "text-[32px]" : "text-2xl";
+  const eyebrowSize = size === "sm" ? "text-[9px]" : "text-[10px]";
+  const labelColor = tone === "paper" ? "text-page" : "text-ink";
+  const eyebrowColor = tone === "paper" ? "text-ink-4" : "text-ink-3";
+
   return (
     <Link
       href={href}
       className={cn(
-        "group inline-flex shrink-0 items-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy/30",
+        "group inline-flex shrink-0 items-baseline gap-2 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         className
       )}
       aria-label="Noor Insight, home"
     >
-      <Image
-        src="/brand/noor-insight-logo-nav-transparent.png"
-        alt="Noor Insight"
-        width={583}
-        height={233}
-        quality={95}
-        unoptimized
+      <span
         className={cn(
-          "block h-auto max-h-full w-auto object-contain transition-opacity motion-reduce:transition-none group-hover:opacity-90",
-          heightClass
+          "font-serif font-medium leading-none tracking-[-0.015em]",
+          sizeClass,
+          labelColor
         )}
-        sizes="(max-width: 768px) 140px, 180px"
-        priority={false}
-      />
+      >
+        Noor<span className="text-accent">.</span>
+      </span>
+      <span
+        className={cn(
+          "font-mono font-medium uppercase leading-none tracking-[0.18em]",
+          eyebrowSize,
+          eyebrowColor
+        )}
+      >
+        Insight
+      </span>
     </Link>
   );
 }

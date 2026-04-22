@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { APP_NAME, getMetadataBaseUrl } from "@/lib/constants";
+import { APP_NAME, FIRM_DESCRIPTION, getMetadataBaseUrl } from "@/lib/constants";
 
-const description =
-  "Noor Insight is a utility intelligence and accountability platform for electricity providers. It turns operational data into clear action: loss reduction, stronger collections, theft detection, and modernization through governed systems.";
+const description = FIRM_DESCRIPTION;
 
 export const defaultMetadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),

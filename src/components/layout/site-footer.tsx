@@ -1,162 +1,127 @@
 import Link from "next/link";
-import { BrandLogo } from "@/components/brand/brand-logo";
-import {
-  APP_NAME,
-  BRAND_CLOSING_TAGLINE,
-  BRAND_STATEMENT,
-  EMAIL_HELLO,
-  EMAIL_PARTNERSHIPS,
-  PRODUCT_FOR_UTILITIES,
-} from "@/lib/constants";
-import { primaryNav } from "@/lib/routes";
+import { APP_NAME, EMAIL_BRIEFING, EMAIL_HELLO } from "@/lib/constants";
 
-const standards = [
-  "Security-first architecture reviews for sensitive operational data.",
-  "Documentation suitable for procurement and technical due diligence.",
-  "Delivery planning that respects staffing, training, and change control.",
-] as const;
+const FIRM_ADDRESS = "Monrovia · London";
 
+/**
+ * Institutional footer. Deep ink background as the one deliberate inverse
+ * surface on the site. Mono eyebrows, amber period on the wordmark. No
+ * newsletter signup, no social icons, no trust strip.
+ *
+ * TODO(legal): replace FORTHCOMING registration number with the real
+ * Liberia / UK registration details when available.
+ */
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-navy/10 bg-navy text-lgray">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-5">
-            <div className="inline-block rounded-lg bg-white px-4 py-3 shadow-sm ring-1 ring-lgray/15">
-              <BrandLogo href="/" heightClass="h-7 w-auto sm:h-8" />
+    <footer className="bg-ink text-page">
+      <div className="mx-auto w-full max-w-content px-6 pb-10 pt-20 sm:px-8 sm:pb-12 sm:pt-24 lg:px-outer">
+        <div className="grid gap-12 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+          <div>
+            <div className="font-serif text-[28px] font-medium leading-none tracking-[-0.015em] text-page">
+              Noor<span className="text-accent-hover">.</span> Insight
             </div>
-            <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold/90">
-              {PRODUCT_FOR_UTILITIES}
+            <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-4">
+              Revenue integrity · Utilities
             </p>
-            <p className="mt-5 max-w-md text-sm font-medium leading-relaxed text-lgray/90">
-              {BRAND_STATEMENT}
+            <p className="mt-6 max-w-[42ch] text-small leading-[1.65] text-line">
+              Noor Insight is a utility systems and advisory firm. Our work is
+              delivered under counsel-approved NDAs and procurement-aligned
+              engagement letters.
             </p>
-            <p className="mt-4 max-w-md text-sm leading-[1.75] text-lgray/75">
-              {APP_NAME} is a utility intelligence and accountability platform for electricity
-              providers: loss reduction, stronger collections, theft detection, and disciplined
-              modernization through governed data.
-            </p>
-            <div className="mt-8 rounded-2xl border border-lgray/10 bg-lgray/[0.04] p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
-                Direct inquiries
-              </p>
-              <a
-                className="mt-3 inline-flex text-sm font-semibold text-lgray underline decoration-lgray/25 underline-offset-4 transition hover:decoration-gold/60"
-                href={`mailto:${EMAIL_HELLO}`}
-              >
-                {EMAIL_HELLO}
-              </a>
-              <p className="mt-3 text-xs leading-relaxed text-lgray/60">
-                General contact and scheduling. Briefings and demos: use the contact page or
-                request form for a structured first conversation.
-              </p>
-              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold/90">
-                Strategic partnerships
-              </p>
-              <a
-                className="mt-2 inline-flex text-sm font-semibold text-lgray underline decoration-lgray/25 underline-offset-4 transition hover:decoration-gold/60"
-                href={`mailto:${EMAIL_PARTNERSHIPS}`}
-              >
-                {EMAIL_PARTNERSHIPS}
-              </a>
-            </div>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
-                Navigate
-              </p>
-              <ul className="mt-5 space-y-2.5 text-sm">
-                <li>
-                  <Link
-                    href="/"
-                    className="text-lgray/75 transition duration-200 ease-out hover:text-lgray"
-                  >
-                    Home
-                  </Link>
-                </li>
-                {primaryNav.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-lgray/75 transition duration-200 ease-out hover:text-lgray"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <FooterColumn title="Firm">
+            <FooterLink href="/about">Approach</FooterLink>
+            <FooterLink href="/solutions">Solutions</FooterLink>
+            <FooterLink href="/use-cases">Use cases</FooterLink>
+          </FooterColumn>
 
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
-                Engagement
-              </p>
-              <p className="mt-5 text-sm leading-[1.75] text-lgray/70">
-                For ministries, regulators, utilities, and development partners:
-                we provide structured briefings, discovery workshops, and phased
-                delivery aligned to procurement realities.
-              </p>
-            </div>
+          <FooterColumn title="Engagement">
+            <FooterLink href="/contact">Request a briefing</FooterLink>
+            <FooterLink href={`mailto:${EMAIL_BRIEFING}`} external>
+              {EMAIL_BRIEFING}
+            </FooterLink>
+            <FooterLink href={`mailto:${EMAIL_HELLO}`} external>
+              {EMAIL_HELLO}
+            </FooterLink>
+          </FooterColumn>
 
-            <div className="sm:col-span-2 lg:col-span-1">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
-                Delivery standards
-              </p>
-              <ul className="mt-5 space-y-3 text-sm leading-[1.65] text-lgray/70">
-                {standards.map((s) => (
-                  <li key={s} className="flex gap-3">
-                    <span
-                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80"
-                      aria-hidden
-                    />
-                    <span>{s}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <FooterColumn title="Offices">
+            <p className="text-small text-line">{FIRM_ADDRESS}</p>
+          </FooterColumn>
         </div>
 
-        <div className="mt-12 border-t border-lgray/10 pt-10 text-center">
-          <p className="text-sm font-semibold tracking-tight text-lgray/90">
-            {BRAND_CLOSING_TAGLINE}
-          </p>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-4 border-t border-lgray/10 pt-10 text-xs text-lgray/55 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
-          <p>
-            © {year} {APP_NAME}. All rights reserved.
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
-              <Link
-                href="/security"
-                className="text-lgray/70 underline decoration-lgray/20 underline-offset-4 transition hover:text-lgray hover:decoration-gold/50"
-              >
-                Security
-              </Link>
-              <Link
-                href="/privacy"
-                className="text-lgray/70 underline decoration-lgray/20 underline-offset-4 transition hover:text-lgray hover:decoration-gold/50"
-              >
-                Privacy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-lgray/70 underline decoration-lgray/20 underline-offset-4 transition hover:text-lgray hover:decoration-gold/50"
-              >
-                Terms
-              </Link>
-            </nav>
-            <p className="text-lgray/45">
-              Emerging markets · Electricity · Public accountability
-            </p>
-          </div>
+        <div className="mt-14 flex flex-col gap-3 border-t border-ink-3 pt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-4 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {year} {APP_NAME.toUpperCase()}</span>
+          <span>Reg. no. forthcoming · Liberia / United Kingdom</span>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-5">
+            <Link href="/privacy" className="text-ink-4 underline decoration-ink-3 underline-offset-4 hover:text-accent hover:decoration-accent">
+              Privacy
+            </Link>
+            <Link href="/terms" className="text-ink-4 underline decoration-ink-3 underline-offset-4 hover:text-accent hover:decoration-accent">
+              Terms
+            </Link>
+            <Link href="/security" className="text-ink-4 underline decoration-ink-3 underline-offset-4 hover:text-accent hover:decoration-accent">
+              Security
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>
   );
 }
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3">
+        {title}
+      </p>
+      <ul className="mt-5 space-y-2.5">
+        {Array.isArray(children) ? (
+          children.map((c, i) => <li key={i}>{c}</li>)
+        ) : (
+          <li>{children}</li>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+function FooterLink({
+  href,
+  children,
+  external,
+}: {
+  href: string;
+  children: React.ReactNode;
+  external?: boolean;
+}) {
+  const className =
+    "text-small text-line no-underline transition-colors hover:text-page focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  const isExternal = external ?? /^(mailto:|https?:|tel:)/i.test(href);
+  if (isExternal) {
+    return (
+      <a
+        href={href}
+        className={className}
+        rel={/^https?:/i.test(href) ? "noopener noreferrer" : undefined}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
+
