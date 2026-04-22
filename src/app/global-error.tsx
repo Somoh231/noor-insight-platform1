@@ -12,6 +12,7 @@ const serif = Source_Serif_4({
   display: "swap",
   variable: "--font-serif",
   weight: ["400", "500"],
+  style: ["normal", "italic"],
 });
 const mono = JetBrains_Mono({
   subsets: ["latin"],
@@ -37,21 +38,21 @@ export default function GlobalError({
       lang="en"
       className={cn(sans.variable, serif.variable, mono.variable)}
     >
-      <body className="flex min-h-dvh items-center justify-center bg-page p-8 text-ink">
+      <body className="flex min-h-dvh items-center justify-center bg-paper p-8 text-ink">
         <div className="max-w-md text-center">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+          <p className="font-mono text-[11px] uppercase tracking-kicker text-ember">
             Application error
           </p>
           <h1 className="mt-3 font-serif text-2xl font-normal leading-[1.25] tracking-[-0.005em] text-ink">
             Noor Insight hit an error while rendering.
           </h1>
-          <p className="mt-4 text-body leading-[1.7] text-ink-2">
+          <p className="mt-4 text-base leading-[1.7] text-ink-soft">
             Please reload the page. If the error persists, contact us.
           </p>
           <button
             type="button"
             onClick={() => reset()}
-            className="mt-8 inline-flex items-center gap-2 rounded-control border border-ink bg-ink px-5 py-3 text-[14px] font-medium text-page transition-colors hover:bg-ink-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="mt-8 inline-flex items-center gap-2 rounded-xs border border-ink bg-ink px-5 py-3 text-sm font-medium text-paper transition-colors hover:bg-black focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_1px_rgb(var(--color-ember-rgb))]"
           >
             Reload
           </button>

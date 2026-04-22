@@ -2,25 +2,29 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Mono uppercase eyebrow. Used for section anchors ("Approach · 02"),
- * eyebrows above display headings, and key-value labels inside data panels.
+ * Kicker — small-caps label above a title. Sans, 600 weight, 0.14em
+ * tracking, ember coloured by default. The `muted` variant drops to
+ * fg-3 for subtler contexts.
  */
-export function Eyebrow({
+export function Kicker({
   children,
   className,
   as: Tag = "p",
   id,
+  muted = false,
 }: {
   children: ReactNode;
   className?: string;
   as?: "p" | "div" | "span";
   id?: string;
+  muted?: boolean;
 }) {
   return (
     <Tag
       id={id}
       className={cn(
-        "font-mono text-eyebrow font-medium uppercase tracking-eyebrow text-ink-3",
+        "font-sans text-xxs font-semibold uppercase tracking-kicker",
+        muted ? "text-muted" : "text-ember",
         className
       )}
     >
@@ -29,41 +33,39 @@ export function Eyebrow({
   );
 }
 
-type DisplaySize = "m" | "l" | "xl";
+type DisplaySize = "sm" | "md" | "lg" | "xl";
 
 /**
- * Display serif heading. Three sizes map to the design system scale.
- * Defaults to an h2; pass `as="h1"` for the hero.
+ * Display heading — the editorial face of the system. `xl` is the hero
+ * scale (84 px), `lg` is H1 (44 px), `md` is H2 (32 px), `sm` is an
+ * understated H2 (24 px).
  */
 export function Display({
   children,
-  size = "l",
+  size = "lg",
   as: Tag = "h2",
   className,
   id,
 }: {
   children: ReactNode;
   size?: DisplaySize;
-  as?: "h1" | "h2" | "h3";
+  as?: "h1" | "h2" | "h3" | "h4";
   className?: string;
   id?: string;
 }) {
   const sizeClass =
     size === "xl"
-      ? "text-4xl sm:text-5xl lg:text-display-xl"
-      : size === "m"
-        ? "text-3xl sm:text-display-m"
-        : "text-3xl sm:text-4xl lg:text-display-l";
+      ? "text-[44px] sm:text-[60px] lg:text-5xl leading-[1.0] tracking-[-0.02em]"
+      : size === "lg"
+        ? "text-3xl sm:text-4xl leading-tight tracking-[-0.015em]"
+        : size === "md"
+          ? "text-2xl sm:text-[32px] leading-[1.2] tracking-[-0.01em]"
+          : "text-xl sm:text-2xl leading-[1.25] tracking-[-0.005em]";
 
   return (
     <Tag
       id={id}
-      className={cn(
-        "font-serif font-normal text-ink",
-        sizeClass,
-        "leading-[1.08] tracking-[-0.015em]",
-        className
-      )}
+      className={cn("font-serif font-normal text-ink", sizeClass, className)}
       style={{ textWrap: "balance" }}
     >
       {children}
@@ -72,7 +74,8 @@ export function Display({
 }
 
 /**
- * Lede paragraph. 19px body-l on a 720px measure, slightly muted against ink.
+ * Lede — the serif paragraph that follows a Display. Inter would read as
+ * UI; the lede stays in Source Serif 4 for editorial authority.
  */
 export function Lede({
   children,
@@ -84,7 +87,7 @@ export function Lede({
   return (
     <p
       className={cn(
-        "max-w-measure text-body-l leading-[1.55] text-ink-2",
+        "max-w-measure-body font-serif text-lg leading-normal text-ink-soft",
         className
       )}
       style={{ textWrap: "pretty" }}
@@ -95,7 +98,7 @@ export function Lede({
 }
 
 /**
- * Standard body paragraph on the 720px measure. Use inside long-form prose.
+ * Body — Inter, 15 px, the workhorse paragraph.
  */
 export function Body({
   children,
@@ -107,12 +110,53 @@ export function Body({
   return (
     <p
       className={cn(
-        "max-w-measure text-body leading-[1.7] text-ink-2",
+        "max-w-measure-body text-base leading-normal text-ink",
         className
       )}
       style={{ textWrap: "pretty" }}
     >
       {children}
     </p>
+  );
+}
+
+/**
+ * Caption — the smallest legible line; muted.
+ */
+export function Caption({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={cn("text-xs leading-normal text-muted", className)}>
+      {children}
+    </p>
+  );
+}
+
+/**
+ * Mono — JetBrains Mono for codes, footnote anchors, reference ids.
+ */
+export function Mono({
+  children,
+  className,
+  as: Tag = "span",
+}: {
+  children: ReactNode;
+  className?: string;
+  as?: "span" | "p" | "div" | "code";
+}) {
+  return (
+    <Tag
+      className={cn(
+        "tabular font-mono text-sm leading-normal text-ink",
+        className
+      )}
+    >
+      {children}
+    </Tag>
   );
 }

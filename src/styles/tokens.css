@@ -1,86 +1,93 @@
 /**
- * Noor Insight — design tokens.
- * Warm off-white page, deep warm charcoal ink, one amber accent.
- * Sourced from the Noor Insight design system bundle (colors_and_type.css).
- * All values are authored as CSS variables so Tailwind can consume them via
- * rgb(var(--...) / <alpha-value>) in tailwind.config.ts.
+ * Noor Insight — design tokens (v2).
+ * Ink on cream, ember accent, with semantic greens / terras for
+ * reconciliation / variance / caution. Ported from the v2 design bundle's
+ * colors_and_type.css; consumed by Tailwind as rgb(var(--...) / <alpha>)
+ * and by a few raw CSS properties that Tailwind doesn't cover cleanly.
  */
 
 :root {
-  /* ---------- Color: page + surfaces ---------- */
-  --color-page-rgb:         246 242 234; /* #F6F2EA */
-  --color-surface-rgb:      248 245 239; /* #F8F5EF raised (barely warmer) */
-  --color-surface-sunk-rgb: 239 233 219; /* #EFE9DB recessed */
+  /* ---------- Color: ink / paper / rules (RGB triplets for Tailwind) ---------- */
+  --color-ink-rgb:         20 18 16;     /* #141210 primary foreground */
+  --color-ink-soft-rgb:    42 38 33;     /* #2A2621 secondary foreground */
+  --color-muted-rgb:       92 86 76;     /* #5C564C captions, tertiary */
+  --color-muted-2-rgb:     138 130 118;  /* #8A8276 disabled, placeholder */
+  --color-rule-rgb:        229 223 211;  /* #E5DFD3 hairline divider */
+  --color-rule-strong-rgb: 207 200 184;  /* #CFC8B8 emphatic 2px rule */
 
-  /* ---------- Color: ink ---------- */
-  --color-ink-rgb:    26 26 26;    /* #1A1A1A primary text */
-  --color-ink-2-rgb:  46 42 36;    /* #2E2A24 secondary */
-  --color-ink-3-rgb:  111 103 88;  /* #6F6758 tertiary */
-  --color-ink-4-rgb:  154 144 129; /* #9A9081 quaternary */
+  --color-paper-rgb:       250 247 240;  /* #FAF7F0 primary background */
+  --color-paper-soft-rgb:  242 237 224;  /* #F2EDE0 secondary surface */
+  --color-paper-sunk-rgb:  237 231 215;  /* #EDE7D7 inputs / wells */
 
-  /* ---------- Color: lines / warm neutrals ---------- */
-  --color-line-rgb:        201 191 168; /* #C9BFA8 hairline */
-  --color-line-soft-rgb:   232 225 211; /* #E8E1D3 softer divider */
-  --color-line-strong-rgb: 111 103 88;  /* #6F6758 emphasized rule */
+  /* ---------- Color: ember accent ---------- */
+  --color-ember-rgb:       198 93 46;    /* #C65D2E primary accent */
+  --color-ember-deep-rgb:  168 78 36;    /* #A84E24 ember hover */
+  --color-ember-wash-rgb:  243 222 205;  /* #F3DECD ember 15% on paper (solid) */
 
-  /* ---------- Color: accent (amber, one per section) ---------- */
-  --color-accent-rgb:       184 134 11;  /* #B8860B primary */
-  --color-accent-hover-rgb: 201 154 46;  /* #C99A2E lighter for hover */
-  --color-accent-deep-rgb:  142 102 8;   /* #8E6608 pressed */
-  --color-accent-tint-rgb:  240 228 194; /* #F0E4C2 selection wash */
-
-  /* ---------- Color: teal (secondary, reserved for data-viz) ---------- */
-  --color-teal-rgb:   15 76 74;   /* #0F4C4A */
-  --color-teal-2-rgb: 46 101 99;  /* #2E6563 */
-  --color-teal-3-rgb: 106 142 140;/* #6A8E8C */
-
-  /* ---------- Color: semantic (used sparingly) ---------- */
-  --color-danger-rgb: 140 43 30; /* #8C2B1E desaturated brick */
+  /* ---------- Color: semantic (reconciliation registers) ---------- */
+  --color-reconciled-rgb:      61 107 74;  /* #3D6B4A positive */
+  --color-reconciled-wash-rgb: 216 227 214;/* #D8E3D6 */
+  --color-variance-rgb:        168 64 35;  /* #A84023 loss / negative */
+  --color-variance-wash-rgb:   239 213 205;/* #EFD5CD */
+  --color-caution-rgb:         184 135 46; /* #B8872E partial */
+  --color-caution-wash-rgb:    239 224 191;/* #EFE0BF */
 
   /* ---------- Typography: scale ---------- */
-  --fs-display-xl: 4rem;      /* 64px */
-  --fs-display-l:  3rem;      /* 48px */
-  --fs-display-m:  2.25rem;   /* 36px */
-  --fs-h1:         2rem;      /* 32px */
-  --fs-h2:         1.5rem;    /* 24px */
-  --fs-h3:         1.25rem;   /* 20px */
-  --fs-body-l:     1.1875rem; /* 19px */
-  --fs-body:       1.0625rem; /* 17px */
-  --fs-small:      0.9375rem; /* 15px */
-  --fs-eyebrow:    0.75rem;   /* 12px */
+  --fs-xxs:  0.6875rem; /* 11 */
+  --fs-xs:   0.75rem;   /* 12 */
+  --fs-sm:   0.8125rem; /* 13 */
+  --fs-base: 0.9375rem; /* 15 */
+  --fs-md:   1.0625rem; /* 17 */
+  --fs-lg:   1.25rem;   /* 20 */
+  --fs-xl:   1.5rem;    /* 24 */
+  --fs-2xl:  2rem;      /* 32 */
+  --fs-3xl:  2.75rem;   /* 44 */
+  --fs-4xl:  3.75rem;   /* 60 */
+  --fs-5xl:  5.25rem;   /* 84 */
 
-  --lh-display: 1.12;
-  --lh-heading: 1.25;
-  --lh-body:    1.6;
-  --lh-tight:   1.4;
+  --lh-tight:  1.15;
+  --lh-snug:   1.25;
+  --lh-normal: 1.5;
+  --lh-loose:  1.65;
 
-  --tracking-eyebrow: 0.14em;
+  --tracking-kicker: 0.14em;
 
-  /* ---------- Spacing (4px base) ---------- */
-  --s-1:  0.25rem;  /* 4 */
-  --s-2:  0.5rem;   /* 8 */
-  --s-3:  0.75rem;  /* 12 */
-  --s-4:  1rem;     /* 16 */
-  --s-5:  1.5rem;   /* 24 */
-  --s-6:  2rem;     /* 32 */
-  --s-7:  3rem;     /* 48 */
-  --s-8:  4rem;     /* 64 */
-  --s-9:  6rem;     /* 96 */
-  --s-10: 8rem;     /* 128 */
-  --s-11: 12rem;    /* 192 */
+  /* ---------- Spacing (4-based) ---------- */
+  --sp-1:  0.25rem;  /* 4 */
+  --sp-2:  0.5rem;   /* 8 */
+  --sp-3:  0.75rem;  /* 12 */
+  --sp-4:  1rem;     /* 16 */
+  --sp-5:  1.5rem;   /* 24 */
+  --sp-6:  2rem;     /* 32 */
+  --sp-7:  3rem;     /* 48 */
+  --sp-8:  4rem;     /* 64 */
+  --sp-9:  6rem;     /* 96 */
+  --sp-10: 8rem;     /* 128 */
 
   /* ---------- Layout ---------- */
-  --content-max:  1200px;
-  --measure:      720px;   /* long-form prose cap (~62ch) */
-  --gutter:       1.5rem;  /* 24 */
-  --outer-margin: 5rem;    /* 80 */
+  --content-max: 1240px;
+  --measure-body: 72ch;
+  --measure-table: 96ch;
+  --outer-margin: 2.5rem;
 
-  /* ---------- Radii (minimal) ---------- */
-  --radius-0: 0px;
-  --radius-1: 2px;
+  /* ---------- Radii ---------- */
+  --rad-0: 0;
+  --rad-1: 2px;
+  --rad-2: 4px;
+  --rad-3: 8px;
+  --rad-pill: 999px;
 
   /* ---------- Motion ---------- */
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-quick:     120ms;
-  --dur-settle:    180ms;
+  --ease:     cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-med:  200ms;
+  --dur-slow: 400ms;
+
+  /* ---------- Elevation (sparing; no card shadows) ---------- */
+  --shadow-menu: 0 1px 2px rgba(20, 18, 16, 0.04), 0 4px 16px rgba(20, 18, 16, 0.06);
+  --shadow-tip:  0 1px 2px rgba(20, 18, 16, 0.08);
+  --ring-focus:  inset 0 0 0 1px rgb(var(--color-ember-rgb));
+
+  /* ---------- Scrim ---------- */
+  --scrim: rgba(20, 18, 16, 0.4);
 }

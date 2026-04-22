@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import {
+  Badge,
   Body,
   ButtonLink,
   Display,
-  Eyebrow,
   InlineLink,
+  Kicker,
   Lede,
   Section,
 } from "@/components/ds";
@@ -12,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Noor Insight is a utility systems and advisory firm. We partner with public electricity providers in emerging markets on revenue integrity, operational visibility, and accountable reporting.",
+    "Noor Insight is an accounting-grade reporting partner for emerging-market electricity utilities. We reconcile billed revenue with collections and produce defensible loss accounting.",
 };
 
 const howWeWork = [
@@ -38,67 +39,59 @@ export default function AboutPage() {
   return (
     <main>
       <Section rhythm="loose">
-        <Eyebrow>About</Eyebrow>
-        <Display as="h1" size="l" className="mt-6">
-          A firm built for institutions that cannot afford ambiguity.
+        <Kicker>About</Kicker>
+        <Display as="h1" size="lg" className="mt-4">
+          An accounting-grade reporting partner.
         </Display>
-        <Lede className="mt-8">
-          Noor Insight is a utility systems and advisory firm. We partner
-          with public electricity providers in emerging markets to reduce
-          losses, improve collections, and modernize field operations —
-          using governed digital systems designed to fit inside the
-          institution, not around it.
+        <Lede className="mt-6">
+          Noor Insight is not a dashboard vendor. We work alongside utility
+          management and regulators to reconcile billed revenue with
+          collections, produce defensible loss accounting, and build
+          reporting that withstands donor and regulatory scrutiny.
         </Lede>
-        <Body className="mt-8">
+        <Body className="mt-6">
           Our work is built for oversight. Every signal traceable, every
           decision defensible, every outcome measurable by a regulator, a
-          board, or a donor. We are not a SaaS vendor, not a think tank,
-          and not a management consultancy. We are a delivery firm that
-          takes on the unglamorous work of reconciliation, control design,
-          and attested reporting.
+          board, or a donor. We are not a SaaS vendor, not a think tank, and
+          not a management consultancy. We are a delivery firm that takes on
+          the unglamorous work of reconciliation, control design, and
+          attested reporting.
         </Body>
       </Section>
 
       <Section id="mission" topRule rhythm="standard">
         <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-16">
-          <Eyebrow>Mission</Eyebrow>
-          <div>
-            <p
-              className="font-serif text-2xl font-normal leading-[1.35] tracking-[-0.005em] text-ink sm:text-3xl"
-              style={{ textWrap: "balance" }}
-            >
-              Help public electricity utilities in emerging markets make
-              their operations legible — to their own leadership, to
-              regulators, and to the donors who fund them.
-            </p>
-          </div>
+          <Kicker>Mission</Kicker>
+          <p
+            className="font-serif text-2xl font-normal leading-[1.35] tracking-[-0.005em] text-ink sm:text-[28px]"
+            style={{ textWrap: "balance" }}
+          >
+            Help public electricity utilities in emerging markets make
+            their operations legible — to their own leadership, to
+            regulators, and to the donors who fund them.
+          </p>
         </div>
       </Section>
 
       <Section id="how-we-work" topRule rhythm="standard">
-        <Eyebrow>How we work</Eyebrow>
-        <Display as="h2" size="l" className="mt-6 max-w-[28ch]">
+        <Kicker>How we work</Kicker>
+        <Display as="h2" size="md" className="mt-4 max-w-[28ch]">
           Phased, controls-first, embedded in institutional process.
         </Display>
-        <ol className="mt-14 grid grid-cols-1 gap-0 border-t border-line sm:grid-cols-2">
+        <ol className="mt-10 grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2">
           {howWeWork.map((item, i) => (
             <li
               key={item.title}
-              className={[
-                "flex gap-5 py-8 pr-4 sm:gap-6 sm:py-10",
-                i % 2 === 0 ? "sm:pr-10" : "sm:pl-10",
-                i < 2 ? "border-b border-line-soft" : "",
-                i % 2 === 0 ? "sm:border-r sm:border-line-soft" : "",
-              ].join(" ")}
+              className="flex gap-5 bg-paper p-7 sm:gap-6 sm:p-8"
             >
-              <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-accent">
+              <span className="font-mono text-xxs font-semibold uppercase tracking-kicker text-ember">
                 0{i + 1}
               </span>
               <div>
                 <h3 className="font-serif text-xl font-normal leading-[1.25] tracking-[-0.005em] text-ink sm:text-2xl">
                   {item.title}
                 </h3>
-                <p className="mt-3 max-w-[46ch] text-small leading-[1.65] text-ink-2">
+                <p className="mt-3 max-w-[46ch] text-sm leading-[1.65] text-ink-soft">
                   {item.body}
                 </p>
               </div>
@@ -110,46 +103,45 @@ export default function AboutPage() {
       {/*
         TODO(team): Replace this block with the named partners, senior
         advisors, and engagement leads when the team is finalised. Until
-        then the section is rendered with a visible "Forthcoming" label
+        then the section is rendered with a visible "Forthcoming" badge
         so no reader infers a roster.
       */}
       <Section id="people" topRule rhythm="standard">
-        <Eyebrow>People</Eyebrow>
-        <Display as="h2" size="l" className="mt-6 max-w-[26ch]">
-          Named leadership and advisors. Forthcoming.
+        <Kicker>People</Kicker>
+        <Display as="h2" size="md" className="mt-4 max-w-[26ch]">
+          Named leadership and advisors.
         </Display>
-        <Body className="mt-8">
+        <Body className="mt-6">
           Noor Insight is led by a small team of practitioners with
           backgrounds in utility operations, public-sector advisory, and
           regulated reporting. The named roster — partners, senior advisors,
           and engagement leads — will be published on this page before the
           first phase-one engagement commences.
         </Body>
-        <div className="mt-10 inline-flex items-center gap-3 border border-line bg-surface px-5 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
-          <span className="inline-block h-[6px] w-[6px] rounded-full bg-accent" />
-          Forthcoming · to be published before first engagement
+        <div className="mt-8">
+          <Badge variant="accent">Forthcoming · published before first engagement</Badge>
         </div>
       </Section>
 
       <Section id="next" topRule rhythm="standard">
         <div className="grid gap-10 lg:grid-cols-[2fr_1fr] lg:items-end">
           <div>
-            <Eyebrow>Next step</Eyebrow>
-            <Display as="h2" size="l" className="mt-6">
+            <Kicker>Next step</Kicker>
+            <Display as="h2" size="md" className="mt-4">
               Open a conversation.
             </Display>
-            <Body className="mt-8">
+            <Body className="mt-6">
               Briefings run forty-five minutes, under NDA, and are available
               to named counterparties at utilities, regulators, ministries,
               and donor programmes.
             </Body>
           </div>
-          <div className="flex flex-col gap-4 lg:items-end">
-            <ButtonLink href="/contact" variant="primary">
+          <div className="flex flex-col items-start gap-4 lg:items-end">
+            <ButtonLink href="/contact" variant="accent">
               Request a briefing
             </ButtonLink>
-            <InlineLink href="/solutions" variant="arrow">
-              Review the modules
+            <InlineLink href="/solutions" variant="ember">
+              Review the programmes →
             </InlineLink>
           </div>
         </div>

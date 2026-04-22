@@ -9,6 +9,7 @@ const sans = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
   adjustFontFallback: true,
 });
 
@@ -16,7 +17,8 @@ const serif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-serif",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const mono = JetBrains_Mono({
@@ -29,7 +31,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = defaultMetadata;
 
 export const viewport: Viewport = {
-  themeColor: "#F6F2EA",
+  themeColor: "#FAF7F0",
   width: "device-width",
   initialScale: 1,
 };

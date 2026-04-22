@@ -2,16 +2,27 @@ import NextLink from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary";
+type Variant = "primary" | "accent" | "ghost" | "quiet";
 
-const baseClass =
-  "inline-flex items-center justify-center gap-2 rounded-control px-5 py-3 text-[14px] font-medium tracking-[-0.005em] no-underline transition-colors duration-quick ease-standard focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-55 disabled:cursor-not-allowed";
+const baseClass = [
+  "inline-flex items-center justify-center gap-2",
+  "rounded-xs border border-transparent",
+  "font-sans text-sm font-medium leading-none",
+  "px-4 py-[10px]",
+  "transition-colors duration-fast ease-standard",
+  "focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_1px_rgb(var(--color-ember-rgb))]",
+  "disabled:opacity-55 disabled:cursor-not-allowed",
+  "active:scale-[0.98] motion-reduce:active:scale-100",
+  "whitespace-nowrap no-underline",
+].join(" ");
 
 const variantClass: Record<Variant, string> = {
-  primary:
-    "bg-ink text-page border border-ink hover:bg-ink-2 active:bg-ink-2",
-  secondary:
-    "bg-page text-ink border border-line hover:bg-surface hover:border-line-strong",
+  primary: "bg-ink text-paper hover:bg-black",
+  accent: "bg-ember text-paper hover:bg-ember-deep",
+  ghost:
+    "bg-transparent text-ink border-rule-strong hover:bg-paper-soft hover:border-ink",
+  quiet:
+    "bg-transparent text-ink-soft hover:text-ink hover:bg-paper-soft px-2 py-[6px]",
 };
 
 export function Button({
@@ -40,7 +51,6 @@ export function ButtonLink({
   href,
   variant = "primary",
   className,
-  arrow = true,
   external,
   ...rest
 }: {
@@ -48,19 +58,10 @@ export function ButtonLink({
   href: string;
   variant?: Variant;
   className?: string;
-  arrow?: boolean;
   external?: boolean;
   "aria-label"?: string;
 }) {
   const isExternal = external ?? /^(https?:|mailto:|tel:)/i.test(href);
-  const content = (
-    <>
-      {children}
-      {arrow ? (
-        <span aria-hidden className="translate-y-[-1px]">→</span>
-      ) : null}
-    </>
-  );
   const classes = cn(baseClass, variantClass[variant], className);
   if (isExternal) {
     return (
@@ -70,13 +71,13 @@ export function ButtonLink({
         rel={/^https?:/i.test(href) ? "noopener noreferrer" : undefined}
         {...rest}
       >
-        {content}
+        {children}
       </a>
     );
   }
   return (
     <NextLink href={href} className={classes} {...rest}>
-      {content}
+      {children}
     </NextLink>
   );
 }

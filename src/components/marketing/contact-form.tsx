@@ -10,10 +10,10 @@ type Status =
   | { kind: "error"; message: string };
 
 const FIELD_BASE =
-  "w-full rounded-control border border-line bg-page px-4 py-3 text-body text-ink placeholder:text-ink-4 focus:border-line-strong focus:outline-none focus-visible:outline-2 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "w-full rounded-xs border border-rule-strong bg-paper px-3 py-[10px] text-sm text-ink placeholder:text-muted-2 transition-colors duration-fast focus:border-ink focus:outline-none";
 
 const LABEL_BASE =
-  "block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink-3";
+  "block font-mono text-[11px] font-medium uppercase tracking-kicker text-muted";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
@@ -75,14 +75,14 @@ export function ContactForm() {
 
   if (status.kind === "sent") {
     return (
-      <div className="border border-line bg-surface p-8 sm:p-10">
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+      <div className="border border-rule bg-paper-soft p-8 sm:p-10">
+        <p className="font-mono text-[11px] uppercase tracking-kicker text-ember">
           Received
         </p>
-        <p className="mt-4 font-serif text-2xl font-normal leading-[1.3] text-ink">
+        <p className="mt-3 font-serif text-2xl font-normal leading-[1.3] text-ink">
           Thank you. You will hear from a named partner within two business days.
         </p>
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+        <p className="mt-4 font-mono text-[11px] uppercase tracking-kicker text-muted">
           Reference · {status.reference}
         </p>
       </div>
@@ -92,7 +92,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-6 border border-line bg-surface p-6 sm:p-8"
+      className="grid gap-6 border border-rule bg-paper-soft p-6 sm:p-8"
       noValidate
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -126,16 +126,20 @@ export function ContactForm() {
           placeholder="What you would like to cover in the briefing."
         />
       </div>
-      <p className="text-small leading-[1.55] text-ink-3">
+      <p className="text-sm leading-[1.55] text-muted">
         Briefings are delivered under NDA. We will not share your message
         outside the firm without written consent.
       </p>
       <div className="flex flex-wrap items-center gap-5">
-        <Button type="submit" variant="primary" disabled={status.kind === "submitting"}>
+        <Button
+          type="submit"
+          variant="accent"
+          disabled={status.kind === "submitting"}
+        >
           {status.kind === "submitting" ? "Sending…" : "Request briefing"}
         </Button>
         {status.kind === "error" ? (
-          <p role="alert" className="text-small text-danger">
+          <p role="alert" className="text-sm text-variance">
             {status.message}
           </p>
         ) : null}
@@ -164,7 +168,7 @@ function Field({
     <div>
       <label htmlFor={id} className={LABEL_BASE}>
         {label}
-        {required ? <span className="text-accent"> *</span> : null}
+        {required ? <span className="text-ember"> *</span> : null}
       </label>
       <input
         id={id}

@@ -3,20 +3,21 @@ import {
   Body,
   ButtonLink,
   Display,
-  Eyebrow,
   InlineLink,
+  Kicker,
   Lede,
   Section,
 } from "@/components/ds";
 
 export const metadata: Metadata = {
-  title: "Use cases",
+  title: "Methodology",
   description:
-    "Reference patterns for how Noor Insight engagements are scoped: commercial loss containment, operational reviews under stress, regulator- and donor-ready reporting.",
+    "Reference patterns for how Noor Insight engagements are scoped: commercial-loss containment, operational reviews under stress, regulator- and donor-ready reporting, and modernization after pilot.",
 };
 
 type Pattern = {
   id: string;
+  kicker: string;
   title: string;
   problem: string;
   posture: string;
@@ -25,6 +26,7 @@ type Pattern = {
 const patterns: readonly Pattern[] = [
   {
     id: "commercial-loss-containment",
+    kicker: "Pattern 01",
     title: "Commercial-loss containment",
     problem:
       "Non-technical losses dominate the narrative, but the story behind the headline percentage is thin — which feeders, which tariff bands, which connection types.",
@@ -33,6 +35,7 @@ const patterns: readonly Pattern[] = [
   },
   {
     id: "operational-review-under-stress",
+    kicker: "Pattern 02",
     title: "Operational reviews under stress",
     problem:
       "Outages and constrained capacity erode legitimacy as fast as they erode revenue. Operations and commercial teams often see different numbers for the same feeder.",
@@ -41,6 +44,7 @@ const patterns: readonly Pattern[] = [
   },
   {
     id: "regulator-donor-reporting",
+    kicker: "Pattern 03",
     title: "Regulator- and donor-ready reporting",
     problem:
       "Oversight audiences ask different questions — technical loss attribution, connection growth, collection ratios, tariff pass-through — but the underlying record needs to agree across every report.",
@@ -49,14 +53,16 @@ const patterns: readonly Pattern[] = [
   },
   {
     id: "modernization-after-pilot",
+    kicker: "Pattern 04",
     title: "Modernization after a pilot",
     problem:
-      "A successful pilot needs to survive the transition to steady-state operations, with the controls, training, and documentation the utility’s procurement and audit functions will require.",
+      "A successful pilot needs to survive the transition to steady-state operations, with the controls, training, and documentation the utility's procurement and audit functions will require.",
     posture:
       "Phased scaling aligned to procurement windows and donor disbursement milestones. Controls and acceptance criteria carry over from pilot to programme.",
   },
   {
     id: "new-connection-programmes",
+    kicker: "Pattern 05",
     title: "New-connection programmes",
     problem:
       "Access expansion is counted in connections, but the underlying register often drifts — one customer carries two meters, or one meter serves multiple households.",
@@ -65,11 +71,12 @@ const patterns: readonly Pattern[] = [
   },
   {
     id: "tariff-and-cost-of-service",
+    kicker: "Pattern 06",
     title: "Tariff and cost-of-service reviews",
     problem:
       "Tariff reviews depend on a defensible cost-of-service base, but the inputs — losses, collections, capital deployed — often come from adjacent spreadsheets that cannot be audited together.",
     posture:
-      "A reconciled base for the filing, with each input traceable to the operational system that produced it. The utility’s submission and the regulator&apos;s analysis can agree on the same starting point.",
+      "A reconciled base for the filing, with each input traceable to the operational system that produced it. The utility's submission and the regulator's analysis can agree on the same starting point.",
   },
 ];
 
@@ -77,11 +84,11 @@ export default function UseCasesPage() {
   return (
     <main>
       <Section rhythm="loose">
-        <Eyebrow>Use cases</Eyebrow>
-        <Display as="h1" size="l" className="mt-6">
+        <Kicker>Methodology</Kicker>
+        <Display as="h1" size="lg" className="mt-4">
           Six reference patterns for scoping an engagement.
         </Display>
-        <Lede className="mt-8">
+        <Lede className="mt-6">
           These patterns describe how utilities, regulators, and donor
           programmes typically engage us. They are deliberately abstract:
           we do not publish named clients, testimonials, or case studies
@@ -90,34 +97,32 @@ export default function UseCasesPage() {
       </Section>
 
       <Section topRule rhythm="standard">
-        <ol className="flex flex-col divide-y divide-line-soft border-y border-line">
-          {patterns.map((p, i) => (
+        <ol className="flex flex-col border-y border-ink divide-y divide-rule">
+          {patterns.map((p) => (
             <li
               key={p.id}
               id={p.id}
-              className="scroll-mt-24 grid gap-8 py-12 lg:grid-cols-[180px_1fr_1fr] lg:gap-12"
+              className="scroll-mt-24 grid gap-8 py-10 lg:grid-cols-[200px_1fr_1fr] lg:gap-12"
             >
               <div>
-                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-accent">
-                  Pattern {String(i + 1).padStart(2, "0")}
-                </span>
+                <Kicker>{p.kicker}</Kicker>
                 <h2 className="mt-3 font-serif text-xl font-normal leading-[1.25] tracking-[-0.005em] text-ink sm:text-2xl">
                   {p.title}
                 </h2>
               </div>
               <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                <div className="font-mono text-[10px] uppercase tracking-kicker text-muted">
                   Problem
                 </div>
-                <p className="mt-3 max-w-[52ch] text-small leading-[1.65] text-ink-2">
+                <p className="mt-3 max-w-[52ch] text-sm leading-[1.65] text-ink-soft">
                   {p.problem}
                 </p>
               </div>
               <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                <div className="font-mono text-[10px] uppercase tracking-kicker text-muted">
                   Engagement posture
                 </div>
-                <p className="mt-3 max-w-[52ch] text-small leading-[1.65] text-ink-2">
+                <p className="mt-3 max-w-[52ch] text-sm leading-[1.65] text-ink-soft">
                   {p.posture}
                 </p>
               </div>
@@ -129,11 +134,11 @@ export default function UseCasesPage() {
       <Section topRule rhythm="standard">
         <div className="grid gap-10 lg:grid-cols-[2fr_1fr] lg:items-end">
           <div>
-            <Eyebrow>Scoping a conversation</Eyebrow>
-            <Display as="h2" size="l" className="mt-6">
+            <Kicker>Scoping a conversation</Kicker>
+            <Display as="h2" size="md" className="mt-4">
               The first meeting is a briefing, not a pitch.
             </Display>
-            <Body className="mt-8">
+            <Body className="mt-6">
               If one of these patterns resembles the work in front of you,
               the fastest way to test a fit is a structured briefing. We
               arrive with questions, not slides. By the end of the
@@ -141,12 +146,12 @@ export default function UseCasesPage() {
               agree there is not an engagement to be had.
             </Body>
           </div>
-          <div className="flex flex-col gap-4 lg:items-end">
-            <ButtonLink href="/contact" variant="primary">
+          <div className="flex flex-col items-start gap-4 lg:items-end">
+            <ButtonLink href="/contact" variant="accent">
               Request a briefing
             </ButtonLink>
-            <InlineLink href="/solutions" variant="arrow">
-              Review the modules
+            <InlineLink href="/solutions" variant="ember">
+              Review the programmes →
             </InlineLink>
           </div>
         </div>

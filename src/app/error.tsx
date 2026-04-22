@@ -19,19 +19,19 @@ export default function RootError({
   }, [error]);
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-6 bg-page px-6 py-24 text-center">
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-6 bg-paper px-6 py-24 text-center">
       <div className="max-w-md space-y-4">
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+        <p className="font-mono text-[11px] uppercase tracking-kicker text-ember">
           Something went wrong
         </p>
         <h1 className="font-serif text-3xl font-normal leading-[1.2] tracking-[-0.01em] text-ink">
           We could not load this page.
         </h1>
-        <p className="text-body leading-[1.7] text-ink-2">
+        <p className="text-base leading-[1.7] text-ink-soft">
           A temporary error occurred. Retry, or return to the main site.
         </p>
         {error.digest ? (
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+          <p className="font-mono text-[11px] uppercase tracking-kicker text-muted">
             Reference · {error.digest}
           </p>
         ) : null}
@@ -40,7 +40,7 @@ export default function RootError({
         <Button type="button" variant="primary" onClick={() => reset()}>
           Try again
         </Button>
-        <ButtonLink href="/" variant="secondary">
+        <ButtonLink href="/" variant="ghost">
           Back to {APP_NAME}
         </ButtonLink>
       </div>

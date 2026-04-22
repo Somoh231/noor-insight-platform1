@@ -1,22 +1,18 @@
-import { HomeAtStake } from "./home-at-stake";
 import { HomeCta } from "./home-cta";
 import { HomeHero } from "./home-hero";
-import { HomeOperatingPrinciples } from "./home-operating-principles";
+import { HomeMethodology } from "./home-methodology";
 import { HomePillars } from "./home-pillars";
-import { HomePositioning } from "./home-positioning";
-import { HomePrincipleQuote } from "./home-principle-quote";
 import { HomeStartingMarket } from "./home-starting-market";
+import { HomeStats } from "./home-stats";
 
 export function HomePageSections() {
   return (
     <main>
       <HomeHero />
-      <HomePositioning />
+      <HomeStats />
       <HomePillars />
-      <HomeAtStake />
       <HomeStartingMarket />
-      <HomeOperatingPrinciples />
-      <HomePrincipleQuote />
+      <HomeMethodology />
       <HomeCta />
     </main>
   );

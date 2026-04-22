@@ -2,21 +2,18 @@ import type { AnchorHTMLAttributes, ReactNode } from "react";
 import NextLink from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "body" | "arrow";
+type Variant = "body" | "arrow" | "ember";
 
-type BaseProps = {
+type Props = {
   children: ReactNode;
   href: string;
   variant?: Variant;
   className?: string;
-};
-
-type InlineLinkProps = BaseProps &
-  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "children">;
+} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "children">;
 
 /**
- * Inline text link. Amber underline on hover, 4px offset. Never scales.
- * For navigation use `NextLink` with `href`. External URLs pass through
+ * Inline text link. v2 prefers a color-shift on hover (ink → ember)
+ * over the old underline-on-hover pattern. External urls pass through
  * with a trailing arrow glyph when `variant="arrow"`.
  */
 export function InlineLink({
@@ -25,12 +22,14 @@ export function InlineLink({
   variant = "body",
   className,
   ...rest
-}: InlineLinkProps) {
+}: Props) {
   const external = /^https?:\/\//i.test(href);
   const common = cn(
-    "text-ink underline decoration-line underline-offset-4 transition-colors duration-quick ease-standard",
-    "hover:text-accent hover:decoration-accent",
-    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    "no-underline transition-colors duration-fast ease-standard",
+    variant === "ember"
+      ? "text-ember hover:text-ember-deep"
+      : "text-ink hover:text-ember",
+    "focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_1px_rgb(var(--color-ember-rgb))] focus-visible:rounded-xs",
     className
   );
 
@@ -38,9 +37,7 @@ export function InlineLink({
     <>
       {children}
       {variant === "arrow" ? (
-        <span aria-hidden className="ml-1 inline-block translate-y-[-1px]">
-          →
-        </span>
+        <span aria-hidden className="ml-1 font-mono">→</span>
       ) : null}
     </>
   );

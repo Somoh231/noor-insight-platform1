@@ -2,9 +2,10 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
- * Noor Insight wordmark. Rendered typographically (no image) so it stays
- * crisp at every size and inherits type loading. Amber period is the only
- * accent flourish permitted on the mark.
+ * Noor Insight wordmark. Typographic (no image) so it stays crisp at
+ * every size: "Noor" in serif medium, an ember dot, a hairline vertical
+ * divider, and "Insight" in serif italic regular. Matches the v2 design
+ * bundle's logo-wordmark.svg exactly.
  */
 export function BrandLogo({
   className,
@@ -15,42 +16,33 @@ export function BrandLogo({
   className?: string;
   href?: string;
   size?: "sm" | "md" | "lg";
-  /** `ink` for the warm page; `paper` for dark surfaces (footer). */
+  /** `ink` for paper; `paper` for dark (footer) surfaces. */
   tone?: "ink" | "paper";
 }) {
   const sizeClass =
-    size === "sm" ? "text-xl" : size === "lg" ? "text-[32px]" : "text-2xl";
-  const eyebrowSize = size === "sm" ? "text-[9px]" : "text-[10px]";
-  const labelColor = tone === "paper" ? "text-page" : "text-ink";
-  const eyebrowColor = tone === "paper" ? "text-ink-4" : "text-ink-3";
+    size === "sm" ? "text-xl" : size === "lg" ? "text-[32px]" : "text-[22px]";
+  const wordColor = tone === "paper" ? "text-paper" : "text-ink";
+  const ruleColor =
+    tone === "paper" ? "bg-paper/70" : "bg-ink";
 
   return (
     <Link
       href={href}
+      aria-label="Noor Insight, home"
       className={cn(
-        "group inline-flex shrink-0 items-baseline gap-2 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+        "inline-flex shrink-0 items-center gap-[10px] font-serif leading-none tracking-[-0.01em] no-underline",
+        sizeClass,
+        wordColor,
         className
       )}
-      aria-label="Noor Insight, home"
     >
+      <span className="font-medium">Noor</span>
       <span
-        className={cn(
-          "font-serif font-medium leading-none tracking-[-0.015em]",
-          sizeClass,
-          labelColor
-        )}
-      >
-        Noor<span className="text-accent">.</span>
-      </span>
-      <span
-        className={cn(
-          "font-mono font-medium uppercase leading-none tracking-[0.18em]",
-          eyebrowSize,
-          eyebrowColor
-        )}
-      >
-        Insight
-      </span>
+        aria-hidden
+        className="mb-[0.22em] inline-block h-[0.32em] w-[0.32em] rounded-full bg-ember"
+      />
+      <span aria-hidden className={cn("inline-block h-[0.78em] w-px", ruleColor)} />
+      <span className="font-normal italic">Insight</span>
     </Link>
   );
 }

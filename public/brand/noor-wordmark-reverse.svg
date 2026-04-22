@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" role="img" aria-label="Noor Insight">
+  <text x="0" y="54" font-family="'Source Serif 4', Georgia, serif" font-weight="500" font-size="48" fill="#FAF7F0" letter-spacing="-0.01em">Noor</text>
+  <circle cx="106" cy="38" r="4.4" fill="#C65D2E"/>
+  <line x1="142" y1="20" x2="142" y2="58" stroke="#FAF7F0" stroke-width="1"/>
+  <text x="154" y="54" font-family="'Source Serif 4', Georgia, serif" font-weight="400" font-style="italic" font-size="48" fill="#FAF7F0">Insight</text>
+</svg>

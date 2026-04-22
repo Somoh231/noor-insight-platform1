@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Display, Eyebrow, InlineLink, Lede, Section } from "@/components/ds";
+import { Display, InlineLink, Kicker, Lede, Section } from "@/components/ds";
 
 export function LegalPage({
   eyebrow,
@@ -19,28 +19,28 @@ export function LegalPage({
   return (
     <main>
       <Section rhythm="loose">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <Display as="h1" size="l" className="mt-6">
+        <Kicker>{eyebrow}</Kicker>
+        <Display as="h1" size="lg" className="mt-4">
           {title}
         </Display>
-        <Lede className="mt-8">{lead}</Lede>
+        <Lede className="mt-6">{lead}</Lede>
       </Section>
 
       <Section topRule rhythm="standard">
-        <article className="max-w-measure space-y-12 text-body leading-[1.7] text-ink-2">
+        <article className="max-w-measure-body space-y-10 text-base leading-[1.7] text-ink-soft">
           {children}
         </article>
-        <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+        <p className="mt-12 font-mono text-[11px] uppercase tracking-kicker text-muted">
           Last updated · {lastUpdated}
         </p>
         {related && related.length ? (
           <nav
             aria-label="Related notices"
-            className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-small"
+            className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm"
           >
             {related.map((r) => (
-              <InlineLink key={r.href} href={r.href} variant="arrow">
-                {r.label}
+              <InlineLink key={r.href} href={r.href} variant="ember">
+                {r.label} →
               </InlineLink>
             ))}
           </nav>
@@ -58,7 +58,7 @@ export function LegalSection({
   children: ReactNode;
 }) {
   return (
-    <section className="space-y-4">
+    <section className="space-y-3">
       <h2 className="font-serif text-xl font-normal leading-[1.3] tracking-[-0.005em] text-ink sm:text-2xl">
         {title}
       </h2>

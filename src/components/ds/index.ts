@@ -1,8 +1,9 @@
 export { Section } from "./section";
-export { Eyebrow, Display, Lede, Body } from "./type";
+export { Kicker, Display, Lede, Body, Caption, Mono } from "./type";
 export { InlineLink } from "./link";
 export { Button, ButtonLink } from "./button";
-export { NumberBlock } from "./number-block";
-export { CitationList, type Citation } from "./citation";
+export { Card } from "./card";
+export { Badge, Dot } from "./badge";
 export { PullQuote } from "./pull-quote";
-export { Pillars, type Pillar } from "./pillars";
+export { StatStrip, type Stat } from "./stat-strip";
+export { MethodList, type Method } from "./method-list";

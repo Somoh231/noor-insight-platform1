@@ -1,74 +1,92 @@
 import Link from "next/link";
-import { APP_NAME, EMAIL_BRIEFING, EMAIL_HELLO } from "@/lib/constants";
-
-const FIRM_ADDRESS = "Monrovia · London";
+import { BrandLogo } from "@/components/brand/brand-logo";
+import {
+  APP_NAME,
+  EMAIL_BRIEFING,
+  EMAIL_HELLO,
+} from "@/lib/constants";
 
 /**
- * Institutional footer. Deep ink background as the one deliberate inverse
- * surface on the site. Mono eyebrows, amber period on the wordmark. No
- * newsletter signup, no social icons, no trust strip.
+ * v2 footer: ink-dark background, inverse wordmark, 2-fr brand column,
+ * three link columns, an inline briefing form on the left. No newsletter
+ * CTA despite the reference design — briefing remains the single
+ * call-to-action per the positioning brief.
  *
- * TODO(legal): replace FORTHCOMING registration number with the real
- * Liberia / UK registration details when available.
+ * TODO(legal): replace "Reg. no. forthcoming" with real Liberia / UK
+ * registration details once available.
  */
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-ink text-page">
-      <div className="mx-auto w-full max-w-content px-6 pb-10 pt-20 sm:px-8 sm:pb-12 sm:pt-24 lg:px-outer">
-        <div className="grid gap-12 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+    <footer className="border-t border-ink bg-ink text-paper">
+      <div className="mx-auto w-full max-w-content px-6 pb-8 pt-12 sm:px-8 sm:pb-10 sm:pt-16 lg:px-outer">
+        <div className="grid gap-10 lg:grid-cols-[2fr_1fr_1fr_1fr] lg:gap-10">
           <div>
-            <div className="font-serif text-[28px] font-medium leading-none tracking-[-0.015em] text-page">
-              Noor<span className="text-accent-hover">.</span> Insight
+            <BrandLogo size="lg" tone="paper" />
+            <p
+              className="mt-4 max-w-[32ch] font-serif text-[15px] leading-normal text-paper/70"
+              style={{ textWrap: "pretty" }}
+            >
+              Defensible loss accounting for emerging-market electricity
+              utilities. Reconciliation the regulator can trust.
+            </p>
+            <div className="mt-8">
+              <FooterKicker>Briefings</FooterKicker>
+              <Link
+                href="/contact"
+                className="mt-3 inline-flex items-center gap-2 rounded-xs border border-paper/25 px-4 py-[10px] text-sm font-medium text-paper transition-colors duration-fast hover:border-ember hover:text-ember"
+              >
+                Request a structured briefing
+                <span aria-hidden className="font-mono text-xs">→</span>
+              </Link>
             </div>
-            <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-4">
-              Revenue integrity · Utilities
-            </p>
-            <p className="mt-6 max-w-[42ch] text-small leading-[1.65] text-line">
-              Noor Insight is a utility systems and advisory firm. Our work is
-              delivered under counsel-approved NDAs and procurement-aligned
-              engagement letters.
-            </p>
           </div>
 
-          <FooterColumn title="Firm">
-            <FooterLink href="/about">Approach</FooterLink>
-            <FooterLink href="/solutions">Solutions</FooterLink>
-            <FooterLink href="/use-cases">Use cases</FooterLink>
+          <FooterColumn title="Work">
+            <FooterLink href="/solutions">Programmes</FooterLink>
+            <span className="inline-flex items-center gap-2 text-[13px] text-paper/82">
+              Publications
+              <span className="font-mono text-[10px] uppercase tracking-kicker text-paper/45">
+                Forthcoming
+              </span>
+            </span>
+            <FooterLink href="/use-cases">Methodology</FooterLink>
+            <FooterLink href="/security">Information handling</FooterLink>
           </FooterColumn>
 
-          <FooterColumn title="Engagement">
-            <FooterLink href="/contact">Request a briefing</FooterLink>
-            <FooterLink href={`mailto:${EMAIL_BRIEFING}`} external>
-              {EMAIL_BRIEFING}
-            </FooterLink>
+          <FooterColumn title="Firm">
+            <FooterLink href="/about">About</FooterLink>
+            <FooterLink href="/contact">Contact</FooterLink>
+            <FooterLink href="/privacy">Privacy</FooterLink>
+            <FooterLink href="/terms">Terms</FooterLink>
+          </FooterColumn>
+
+          <FooterColumn title="Contact">
+            <span className="text-[13px] text-paper/82">Monrovia</span>
             <FooterLink href={`mailto:${EMAIL_HELLO}`} external>
               {EMAIL_HELLO}
             </FooterLink>
-          </FooterColumn>
-
-          <FooterColumn title="Offices">
-            <p className="text-small text-line">{FIRM_ADDRESS}</p>
+            <FooterLink href={`mailto:${EMAIL_BRIEFING}`} external>
+              {EMAIL_BRIEFING}
+            </FooterLink>
           </FooterColumn>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-ink-3 pt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-4 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {year} {APP_NAME.toUpperCase()}</span>
+        <div className="mt-10 flex flex-col gap-3 border-t border-paper/12 pt-5 font-mono text-[11px] text-paper/50 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {year} {APP_NAME.toUpperCase()} LTD.</span>
           <span>Reg. no. forthcoming · Liberia / United Kingdom</span>
-          <nav aria-label="Legal" className="flex flex-wrap gap-x-5">
-            <Link href="/privacy" className="text-ink-4 underline decoration-ink-3 underline-offset-4 hover:text-accent hover:decoration-accent">
-              Privacy
-            </Link>
-            <Link href="/terms" className="text-ink-4 underline decoration-ink-3 underline-offset-4 hover:text-accent hover:decoration-accent">
-              Terms
-            </Link>
-            <Link href="/security" className="text-ink-4 underline decoration-ink-3 underline-offset-4 hover:text-accent hover:decoration-accent">
-              Security
-            </Link>
-          </nav>
+          <span>Reconciled quarterly</span>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterKicker({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="font-sans text-[10px] font-semibold uppercase tracking-kicker text-ember">
+      {children}
+    </p>
   );
 }
 
@@ -81,10 +99,8 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3">
-        {title}
-      </p>
-      <ul className="mt-5 space-y-2.5">
+      <FooterKicker>{title}</FooterKicker>
+      <ul className="mt-4 flex flex-col gap-2">
         {Array.isArray(children) ? (
           children.map((c, i) => <li key={i}>{c}</li>)
         ) : (
@@ -105,7 +121,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const className =
-    "text-small text-line no-underline transition-colors hover:text-page focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+    "text-[13px] text-paper/82 transition-colors duration-fast hover:text-paper focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_1px_rgb(var(--color-ember-rgb))] focus-visible:rounded-xs";
   const isExternal = external ?? /^(mailto:|https?:|tel:)/i.test(href);
   if (isExternal) {
     return (
@@ -124,4 +140,3 @@ function FooterLink({
     </Link>
   );
 }
-
