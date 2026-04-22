@@ -1,4 +1,5 @@
 import { HomeCta } from "./home-cta";
+import { HomeFounders } from "./home-founders";
 import { HomeHero } from "./home-hero";
 import { HomeMethodology } from "./home-methodology";
 import { HomePillars } from "./home-pillars";
@@ -12,6 +13,7 @@ export function HomePageSections() {
       <HomeStats />
       <HomePillars />
       <HomeStartingMarket />
+      <HomeFounders />
       <HomeMethodology />
       <HomeCta />
     </main>

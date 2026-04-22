@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Noor Insight is an accounting-grade reporting partner for emerging-market electricity utilities. We reconcile billed revenue with collections and produce defensible loss accounting.",
+    "Noor Insight is a utility systems and advisory firm for public electricity providers in West Africa. We reconcile billed revenue with collections and produce defensible loss accounting. Starting market: Liberia Electricity Corporation.",
 };
 
 const howWeWork = [
@@ -43,10 +43,10 @@ export default function AboutPage() {
           An accounting-grade reporting partner.
         </Display>
         <Lede className="mt-6">
-          Noor Insight is not a dashboard vendor. We work alongside utility
-          management and regulators to reconcile billed revenue with
-          collections, produce defensible loss accounting, and build
-          reporting that withstands donor and regulatory scrutiny.
+          Noor Insight is a utility systems and advisory firm for public
+          electricity providers in West Africa. Our starting market is the
+          Liberia Electricity Corporation, with deliberate expansion across
+          the CLSG transmission corridor and the ECOWAS networks.
         </Lede>
         <Body className="mt-6">
           Our work is built for oversight. Every signal traceable, every
@@ -65,10 +65,31 @@ export default function AboutPage() {
             className="font-serif text-2xl font-normal leading-[1.35] tracking-[-0.005em] text-ink sm:text-[28px]"
             style={{ textWrap: "balance" }}
           >
-            Help public electricity utilities in emerging markets make
-            their operations legible — to their own leadership, to
-            regulators, and to the donors who fund them.
+            Help public electricity utilities in West Africa make their
+            operations legible — to their own leadership, to regulators,
+            and to the donors who fund them.
           </p>
+        </div>
+      </Section>
+
+      <Section id="geography" topRule rhythm="standard">
+        <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-16">
+          <Kicker>Starting geography</Kicker>
+          <div>
+            <Body>
+              Our starting geography is West Africa. The first engagement is
+              with the Liberia Electricity Corporation, under the supervision
+              of the Liberia Electricity Regulatory Commission and the
+              donor programmes already funding the sector.
+            </Body>
+            <Body className="mt-4">
+              Deliberate expansion follows the CLSG transmission corridor
+              (Côte d&apos;Ivoire · Liberia · Sierra Leone · Guinea) and the
+              anglophone and francophone distribution utilities across the
+              ECOWAS network. We do not publish a customer list before a
+              customer is engaged.
+            </Body>
+          </div>
         </div>
       </Section>
 

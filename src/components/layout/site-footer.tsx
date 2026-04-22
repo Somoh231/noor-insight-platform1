@@ -24,11 +24,11 @@ export function SiteFooter() {
           <div>
             <BrandLogo size="lg" tone="paper" />
             <p
-              className="mt-4 max-w-[32ch] font-serif text-[15px] leading-normal text-paper/70"
+              className="mt-4 max-w-[34ch] font-serif text-[15px] leading-normal text-paper/70"
               style={{ textWrap: "pretty" }}
             >
-              Defensible loss accounting for emerging-market electricity
-              utilities. Reconciliation the regulator can trust.
+              Defensible loss accounting for public electricity providers in
+              West Africa. Reconciliation the regulator can trust.
             </p>
             <div className="mt-8">
               <FooterKicker>Briefings</FooterKicker>

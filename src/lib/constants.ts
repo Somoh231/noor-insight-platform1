@@ -3,7 +3,7 @@ export const APP_NAME = "Noor Insight";
 
 /** Short positioning line for shared metadata. Not a tagline. */
 export const FIRM_DESCRIPTION =
-  "Noor Insight is a utility systems and advisory firm. We partner with public electricity providers in emerging markets on revenue integrity, operational visibility, and accountable reporting.";
+  "Noor Insight is a utility systems and advisory firm for public electricity providers in West Africa. We reconcile billed revenue with collections and produce defensible loss accounting that withstands regulatory and donor scrutiny. Starting market: Liberia Electricity Corporation.";
 
 /** Institutional mailboxes. */
 export const EMAIL_HELLO = "hello@noorinsight.com";

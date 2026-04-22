@@ -31,9 +31,11 @@ export function HomeHero() {
           </div>
           <div>
             <Lede>
-              Noor Insight works alongside utility management and regulators
-              to reconcile billed revenue with collections, producing loss
-              accounting that withstands donor and regulatory scrutiny.
+              Noor Insight is a utility systems and advisory firm for
+              public electricity providers in West Africa. We work
+              alongside utility management and regulators to reconcile
+              billed revenue with collections, producing loss accounting
+              that withstands donor and regulatory scrutiny.
             </Lede>
             <div className="mt-6 flex flex-wrap gap-[10px]">
               <ButtonLink href="/use-cases" variant="primary">
@@ -43,6 +45,9 @@ export function HomeHero() {
                 Request a briefing
               </ButtonLink>
             </div>
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-kicker text-muted">
+              Starting market · Liberia Electricity Corporation
+            </p>
           </div>
         </div>
       </div>

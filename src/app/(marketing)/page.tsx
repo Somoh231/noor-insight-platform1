@@ -3,7 +3,7 @@ import { HomePageSections } from "@/components/marketing/home";
 import { APP_NAME, FIRM_DESCRIPTION } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `${APP_NAME} — revenue integrity for emerging-market utilities`,
+  title: `${APP_NAME} — revenue integrity for West African utilities`,
   description: FIRM_DESCRIPTION,
 };
 
