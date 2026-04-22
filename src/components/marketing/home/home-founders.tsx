@@ -1,34 +1,27 @@
 import { Display, InlineLink, Kicker, Section } from "@/components/ds";
+import { LinkedInLink } from "@/components/marketing/linkedin-link";
 
 type Founder = {
   name: string;
   subtitle: string;
   body: string;
-  profile: { label: string; href: string };
+  linkedInUrl: string;
 };
 
 const founders: readonly Founder[] = [
   {
     name: "Mahmoud Mobir",
-    subtitle:
-      "Senior Analyst, Rhodium Group · Energy & Climate",
+    subtitle: "Senior Analyst, Rhodium Group · Energy & Climate",
     body:
       "Leads the firm's global analysis of the electric power transition and maintains Rhodium's Global Energy Model. Prior: GRTgaz (European energy-system modelling); Schneider Electric (grid reliability research). École des Mines, Paris · INP Toulouse.",
-    profile: {
-      label: "rhg.com/team/mahmoud-mobir",
-      href: "https://rhg.com/team/mahmoud-mobir/",
-    },
+    linkedInUrl: "https://www.linkedin.com/in/mmobir",
   },
   {
     name: "Mohammed Soumaoro",
-    subtitle:
-      "Co-founder, Neldon · Former Ministry of Health, Liberia",
+    subtitle: "Co-founder, Neldon · Former Ministry of Health, Liberia",
     body:
       "Public-sector delivery and software for African markets. Co-founded Neldon (software for African markets); programme officer at Liberia's Ministry of Health; member operations at BioForward. African Leadership University. Diana Award for social impact.",
-    profile: {
-      label: "linkedin.com/in/somoh231",
-      href: "https://www.linkedin.com/in/somoh231",
-    },
+    linkedInUrl: "https://www.linkedin.com/in/somoh231",
   },
 ];
 
@@ -74,10 +67,11 @@ export function HomeFounders() {
                 {f.body}
               </p>
               <div className="mt-auto pt-5" />
-              <div className="border-t border-rule pt-3">
-                <InlineLink href={f.profile.href} variant="ember">
-                  {f.profile.label} →
-                </InlineLink>
+              <div className="flex items-center justify-between border-t border-rule pt-3">
+                <span className="font-mono text-[10px] uppercase tracking-kicker text-muted">
+                  LinkedIn
+                </span>
+                <LinkedInLink href={f.linkedInUrl} name={f.name} />
               </div>
             </article>
           ))}

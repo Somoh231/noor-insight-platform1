@@ -8,6 +8,7 @@ import {
   Lede,
   Section,
 } from "@/components/ds";
+import { LinkedInLink } from "@/components/marketing/linkedin-link";
 
 export const metadata: Metadata = {
   title: "About",
@@ -146,10 +147,7 @@ export default function AboutPage() {
               "M.A.S., Energy Systems Optimization — École des Mines, Paris",
               "M.Sc., Energy Dynamics — INP Toulouse",
             ]}
-            profile={{
-              label: "rhg.com/team/mahmoud-mobir",
-              href: "https://rhg.com/team/mahmoud-mobir/",
-            }}
+            linkedInUrl="https://www.linkedin.com/in/mmobir"
           />
           <FounderCard
             name="Mohammed Soumaoro"
@@ -164,10 +162,7 @@ export default function AboutPage() {
               "B.A., African Leadership University (Kigali / Mauritius)",
             ]}
             honours={["Diana Award · social impact"]}
-            profile={{
-              label: "linkedin.com/in/somoh231",
-              href: "https://www.linkedin.com/in/somoh231",
-            }}
+            linkedInUrl="https://www.linkedin.com/in/somoh231"
           />
         </div>
       </Section>
@@ -206,7 +201,7 @@ function FounderCard({
   prior,
   education,
   honours,
-  profile,
+  linkedInUrl,
 }: {
   name: string;
   subtitle: string;
@@ -214,7 +209,7 @@ function FounderCard({
   prior: readonly string[];
   education: readonly string[];
   honours?: readonly string[];
-  profile: { label: string; href: string };
+  linkedInUrl: string;
 }) {
   return (
     <article className="flex flex-col bg-paper p-7 sm:p-9">
@@ -236,10 +231,11 @@ function FounderCard({
         {honours?.length ? <DlRow label="Honours" items={honours} /> : null}
       </dl>
 
-      <div className="mt-7 border-t border-rule pt-4">
-        <InlineLink href={profile.href} variant="ember">
-          {profile.label} →
-        </InlineLink>
+      <div className="mt-7 flex items-center justify-between border-t border-rule pt-4">
+        <span className="font-mono text-[10px] uppercase tracking-kicker text-muted">
+          LinkedIn
+        </span>
+        <LinkedInLink href={linkedInUrl} name={name} />
       </div>
     </article>
   );
