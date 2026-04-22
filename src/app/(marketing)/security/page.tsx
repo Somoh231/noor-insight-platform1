@@ -1,108 +1,74 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { APP_NAME, EMAIL_SUPPORT } from "@/lib/constants";
+import { InlineLink } from "@/components/ds";
+import { LegalPage, LegalSection } from "@/components/marketing/legal-layout";
+import { APP_NAME, EMAIL_HELLO } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Security",
-  description: `Security posture and practices for ${APP_NAME} deployments, evaluations, and procurement due diligence.`,
+  title: "Information handling",
+  description: `How ${APP_NAME} handles sensitive information during advisory and delivery engagements.`,
   robots: { index: true, follow: true },
 };
 
 export default function SecurityPage() {
   return (
-      <main className="border-b border-navy/10 bg-lgray">
-        <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-dgray/50">
-            Trust & assurance
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-            Security overview
-          </h1>
-          <p className="mt-4 text-sm leading-relaxed text-dgray/80">
-            This page summarizes how we think about security for {APP_NAME}, from evaluation
-            consoles through production utility deployments. It is a diligence aid, not a
-            substitute for a completed questionnaire (e.g. CAIQ), penetration test report, or
-            customer-specific architecture review under NDA.
-          </p>
+    <LegalPage
+      eyebrow="Information handling"
+      title="How we treat sensitive information."
+      lead={`${APP_NAME} is an advisory and delivery firm, not a software vendor. We do not offer a hosted product to sign up for. This page describes how we handle information during engagements with utilities, regulators, ministries, and donor programmes. It is a diligence aid, not a substitute for an engagement-specific data processing instrument or information-security annex.`}
+      lastUpdated="April 2026"
+      related={[
+        { href: "/privacy", label: "Privacy notice" },
+        { href: "/terms", label: "Terms of use" },
+      ]}
+    >
+      <LegalSection title="Engagement information">
+        <p>
+          Information shared under an NDA — draft reports, loss figures,
+          crew records, customer identifiers — is handled under the terms
+          of that NDA and the data processing instrument attached to the
+          engagement letter. Residency, retention, access, and deletion
+          obligations are set there.
+        </p>
+      </LegalSection>
 
-          <section className="mt-12 space-y-4 text-sm leading-relaxed text-dgray/85">
-            <h2 className="text-base font-semibold text-navy">Identity and access</h2>
-            <p>
-              Production tenants integrate with your governed identity model. Console access uses
-              authenticated sessions with role separation (executive, operations, field) and
-              configurable session lifetime. Directory users are stored with salted password hashes
-              (bcrypt); shared evaluation passwords are intended for controlled pilots only and
-              should be removed from reachable deployments once directory authentication is live.
-            </p>
-          </section>
+      <LegalSection title="Operational data in utility systems">
+        <p>
+          Where we work on systems inside a utility&apos;s own
+          infrastructure, we follow the utility&apos;s access policy,
+          change-management process, and audit trail. Our preferred
+          posture is to leave no parallel copies of operational data
+          outside the utility&apos;s controlled environment unless an
+          engagement explicitly requires it.
+        </p>
+      </LegalSection>
 
-          <section className="mt-10 space-y-4 text-sm leading-relaxed text-dgray/85">
-            <h2 className="text-base font-semibold text-navy">Data platform</h2>
-            <p>
-              Hosted data planes are designed around least-privilege database roles, encrypted
-              transport to the application tier, and clear separation between environments (e.g.
-              evaluation vs production). Exact residency, retention, and backup objectives are
-              captured in your data processing agreement and infrastructure runbook.
-            </p>
-          </section>
+      <LegalSection title="Correspondence and briefing data">
+        <p>
+          Briefing requests submitted through this site arrive in the
+          firm&apos;s mailbox and are reviewed by a named partner. They are
+          not forwarded to third parties. We do not run marketing
+          analytics, tracking pixels, or retargeting on this site.
+        </p>
+      </LegalSection>
 
-          <section className="mt-10 space-y-4 text-sm leading-relaxed text-dgray/85">
-            <h2 className="text-base font-semibold text-navy">Logging and auditability</h2>
-            <p>
-              We design workflows so significant actions can be attributed to users and systems,
-              supporting internal governance and external audit. The depth of logging and export
-              you require is configured per engagement, aligned to regulator and donor
-              expectations.
-            </p>
-          </section>
+      <LegalSection title="Procurement packages">
+        <p>
+          For formal RFPs, we provide an information-security questionnaire,
+          reference architectures for proposed systems, and control
+          narratives under NDA — as part of structured diligence, not as
+          anonymous downloads from this marketing site.
+        </p>
+      </LegalSection>
 
-          <section className="mt-10 space-y-4 text-sm leading-relaxed text-dgray/85">
-            <h2 className="text-base font-semibold text-navy">Vulnerability disclosure</h2>
-            <p>
-              If you believe you have found a security issue affecting this site or an authorized
-              deployment, contact us with a concise description and reproduction steps. We treat
-              good-faith reports seriously and ask that you avoid disruptive testing without prior
-              written agreement.
-            </p>
-            <p>
-              <a
-                className="font-semibold text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy/50"
-                href={`mailto:${EMAIL_SUPPORT}?subject=${encodeURIComponent(`${APP_NAME}: security disclosure`)}`}
-              >
-                {EMAIL_SUPPORT}
-              </a>
-            </p>
-          </section>
-
-          <section className="mt-10 space-y-4 text-sm leading-relaxed text-dgray/85">
-            <h2 className="text-base font-semibold text-navy">Procurement packages</h2>
-            <p>
-              For formal RFPs, we provide architecture diagrams, control narratives, and evidence
-              packs under NDA as part of structured diligence, not as anonymous downloads from this
-              marketing site.
-            </p>
-          </section>
-
-          <p className="mt-14 text-xs text-dgray/55">
-            Last updated April 2026. Material changes to our public security posture will be
-            reflected here with an updated date.
-          </p>
-
-          <p className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <Link
-              href="/privacy"
-              className="font-semibold text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy/50"
-            >
-              Privacy notice
-            </Link>
-            <Link
-              href="/terms"
-              className="font-semibold text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy/50"
-            >
-              Terms of use
-            </Link>
-          </p>
-        </article>
-      </main>
+      <LegalSection title="Reporting a concern">
+        <p>
+          If you believe information shared with us has been mishandled, or
+          have a responsible-disclosure issue about this website, write to{" "}
+          <InlineLink href={`mailto:${EMAIL_HELLO}`}>{EMAIL_HELLO}</InlineLink>
+          . We treat good-faith reports seriously and ask that testing
+          avoid disruption or unauthorised access.
+        </p>
+      </LegalSection>
+    </LegalPage>
   );
 }

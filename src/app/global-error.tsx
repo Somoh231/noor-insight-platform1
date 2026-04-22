@@ -1,22 +1,25 @@
 "use client";
 
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import "@/styles/tokens.css";
 import "./globals.css";
 
-const inter = Inter({
+const sans = Inter({ subsets: ["latin"], display: "swap", variable: "--font-sans" });
+const serif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
-  adjustFontFallback: true,
+  variable: "--font-serif",
+  weight: ["400", "500"],
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+  weight: ["400", "500"],
 });
 
-/**
- * Replaces the root layout when active — it must import the same design CSS as `layout.tsx`
- * or the app can render with class names but no Tailwind/tokens (looks “raw”).
- */
 export default function GlobalError({
   error,
   reset,
@@ -25,27 +28,30 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.error(error);
   }, [error]);
 
   return (
-    <html lang="en" className={inter.variable}>
-      <body
-        className={cn(
-          "antialiased",
-          inter.className,
-          "flex min-h-dvh items-center justify-center bg-lgray p-8 text-dgray"
-        )}
-      >
+    <html
+      lang="en"
+      className={cn(sans.variable, serif.variable, mono.variable)}
+    >
+      <body className="flex min-h-dvh items-center justify-center bg-page p-8 text-ink">
         <div className="max-w-md text-center">
-          <h1 className="text-xl font-semibold tracking-tight text-navy">Application error</h1>
-          <p className="mt-3 text-sm leading-relaxed text-dgray/80">
-            Noor Insight hit a critical error while rendering. Please reload the page.
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+            Application error
+          </p>
+          <h1 className="mt-3 font-serif text-2xl font-normal leading-[1.25] tracking-[-0.005em] text-ink">
+            Noor Insight hit an error while rendering.
+          </h1>
+          <p className="mt-4 text-body leading-[1.7] text-ink-2">
+            Please reload the page. If the error persists, contact us.
           </p>
           <button
             type="button"
             onClick={() => reset()}
-            className="mt-6 inline-flex rounded-lg border border-navy/20 bg-navy px-5 py-2.5 text-sm font-semibold text-lgray shadow-sm transition hover:bg-navy/95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy/35"
+            className="mt-8 inline-flex items-center gap-2 rounded-control border border-ink bg-ink px-5 py-3 text-[14px] font-medium text-page transition-colors hover:bg-ink-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Reload
           </button>

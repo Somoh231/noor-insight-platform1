@@ -1,92 +1,159 @@
 import type { Metadata } from "next";
-import { SectionHeading } from "@/components/marketing/section-heading";
-import { ButtonLink } from "@/components/ui/button-link";
-import { aboutMegaMenuItems } from "@/lib/about-mega-menu";
+import {
+  Body,
+  ButtonLink,
+  Display,
+  Eyebrow,
+  InlineLink,
+  Lede,
+  Section,
+} from "@/components/ds";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Noor Insight is a utility intelligence and accountability platform. We partner with electricity providers and public enterprises on revenue integrity, operational command, and governance-grade reporting.",
+    "Noor Insight is a utility systems and advisory firm. We partner with public electricity providers in emerging markets on revenue integrity, operational visibility, and accountable reporting.",
 };
 
-const commitments = [
+const howWeWork = [
   {
-    title: "Evidence over narrative",
-    body: "Decisions should rest on reconciled signals and documented assumptions, especially where public money and political risk intersect.",
+    title: "Phased delivery",
+    body: "Engagements proceed in named phases — diagnostic, reconciliation, attested reporting — each with its own acceptance criteria. We do not begin a phase before the previous one has been signed off by the utility.",
   },
   {
-    title: "Delivery that respects institutions",
-    body: "Software succeeds when procurement, training, and field adoption are planned as seriously as the architecture review.",
+    title: "Controls first",
+    body: "Role separation, change logs, and evidence requirements are designed in at the start, not retrofitted after an audit. The system a regulator inspects is the same system the team uses day-to-day.",
   },
   {
-    title: "Reporting that survives scrutiny",
-    body: "Donors, regulators, and boards ask different questions; the underlying numbers should still agree.",
+    title: "Embedded in the institution",
+    body: "We work alongside the utility's existing commercial, technical, and field teams. Our aim is to strengthen their record, not to replace their role with an external dashboard.",
   },
-] as const;
+  {
+    title: "Procurement- and donor-aligned",
+    body: "Engagements are sized for real procurement windows and disbursement milestones. Documentation is produced to the standard the utility's oversight bodies already use.",
+  },
+];
 
 export default function AboutPage() {
   return (
-    <main className="border-b border-navy/10 bg-lgray">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <SectionHeading
-          eyebrow="About"
-          title="Built for institutions that cannot afford ambiguity"
-          lead="Noor Insight partners with utilities and public enterprises where performance, legitimacy, and capital efficiency must move together. We combine domain seriousness with delivery discipline, because software only matters when organizations can run it."
-        />
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/contact" variant="primary" className="px-6 py-3">
-            Contact leadership
-          </ButtonLink>
-          <ButtonLink href="/" variant="secondary" className="px-6 py-3">
-            Return to overview
-          </ButtonLink>
-        </div>
+    <main>
+      <Section rhythm="loose">
+        <Eyebrow>About</Eyebrow>
+        <Display as="h1" size="l" className="mt-6">
+          A firm built for institutions that cannot afford ambiguity.
+        </Display>
+        <Lede className="mt-8">
+          Noor Insight is a utility systems and advisory firm. We partner
+          with public electricity providers in emerging markets to reduce
+          losses, improve collections, and modernize field operations —
+          using governed digital systems designed to fit inside the
+          institution, not around it.
+        </Lede>
+        <Body className="mt-8">
+          Our work is built for oversight. Every signal traceable, every
+          decision defensible, every outcome measurable by a regulator, a
+          board, or a donor. We are not a SaaS vendor, not a think tank,
+          and not a management consultancy. We are a delivery firm that
+          takes on the unglamorous work of reconciliation, control design,
+          and attested reporting.
+        </Body>
+      </Section>
 
-        <p className="mx-auto mt-14 max-w-3xl text-center text-[11px] font-semibold uppercase tracking-[0.26em] text-dgray/50">
-          At a glance
-        </p>
-        <ul className="mt-6 grid gap-5 sm:gap-6 lg:grid-cols-2">
-          {aboutMegaMenuItems.map((item) => (
-            <li
-              key={item.id}
-              id={item.id}
-              className="scroll-mt-24 rounded-2xl border border-navy/[0.08] bg-panel/90 p-6 shadow-sm ring-1 ring-navy/[0.04] sm:p-7"
+      <Section id="mission" topRule rhythm="standard">
+        <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-16">
+          <Eyebrow>Mission</Eyebrow>
+          <div>
+            <p
+              className="font-serif text-2xl font-normal leading-[1.35] tracking-[-0.005em] text-ink sm:text-3xl"
+              style={{ textWrap: "balance" }}
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
-                {item.id === "contact-briefing" ? "Next step" : "Topic"}
-              </p>
-              <h3 className="mt-2 text-lg font-semibold tracking-tight text-navy sm:text-xl">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-dgray/80">{item.description}</p>
-              {item.id === "contact-briefing" ? (
-                <div className="mt-5">
-                  <ButtonLink href="/contact" variant="primary" className="px-5 py-2.5 text-sm">
-                    Request a structured briefing
-                  </ButtonLink>
-                </div>
-              ) : null}
+              Help public electricity utilities in emerging markets make
+              their operations legible — to their own leadership, to
+              regulators, and to the donors who fund them.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section id="how-we-work" topRule rhythm="standard">
+        <Eyebrow>How we work</Eyebrow>
+        <Display as="h2" size="l" className="mt-6 max-w-[28ch]">
+          Phased, controls-first, embedded in institutional process.
+        </Display>
+        <ol className="mt-14 grid grid-cols-1 gap-0 border-t border-line sm:grid-cols-2">
+          {howWeWork.map((item, i) => (
+            <li
+              key={item.title}
+              className={[
+                "flex gap-5 py-8 pr-4 sm:gap-6 sm:py-10",
+                i % 2 === 0 ? "sm:pr-10" : "sm:pl-10",
+                i < 2 ? "border-b border-line-soft" : "",
+                i % 2 === 0 ? "sm:border-r sm:border-line-soft" : "",
+              ].join(" ")}
+            >
+              <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-accent">
+                0{i + 1}
+              </span>
+              <div>
+                <h3 className="font-serif text-xl font-normal leading-[1.25] tracking-[-0.005em] text-ink sm:text-2xl">
+                  {item.title}
+                </h3>
+                <p className="mt-3 max-w-[46ch] text-small leading-[1.65] text-ink-2">
+                  {item.body}
+                </p>
+              </div>
             </li>
           ))}
-        </ul>
+        </ol>
+      </Section>
 
-        <div className="mt-16 border-t border-navy/10 pt-16">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-dgray/50">
-            How we work
-          </p>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-3">
-            {commitments.map((c) => (
-              <li
-                key={c.title}
-                className="rounded-2xl border border-navy/[0.08] bg-panel/90 p-6 shadow-sm ring-1 ring-navy/[0.04]"
-              >
-                <h3 className="text-sm font-semibold tracking-tight text-navy">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-dgray/80">{c.body}</p>
-              </li>
-            ))}
-          </ul>
+      {/*
+        TODO(team): Replace this block with the named partners, senior
+        advisors, and engagement leads when the team is finalised. Until
+        then the section is rendered with a visible "Forthcoming" label
+        so no reader infers a roster.
+      */}
+      <Section id="people" topRule rhythm="standard">
+        <Eyebrow>People</Eyebrow>
+        <Display as="h2" size="l" className="mt-6 max-w-[26ch]">
+          Named leadership and advisors. Forthcoming.
+        </Display>
+        <Body className="mt-8">
+          Noor Insight is led by a small team of practitioners with
+          backgrounds in utility operations, public-sector advisory, and
+          regulated reporting. The named roster — partners, senior advisors,
+          and engagement leads — will be published on this page before the
+          first phase-one engagement commences.
+        </Body>
+        <div className="mt-10 inline-flex items-center gap-3 border border-line bg-surface px-5 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+          <span className="inline-block h-[6px] w-[6px] rounded-full bg-accent" />
+          Forthcoming · to be published before first engagement
         </div>
-      </div>
+      </Section>
+
+      <Section id="next" topRule rhythm="standard">
+        <div className="grid gap-10 lg:grid-cols-[2fr_1fr] lg:items-end">
+          <div>
+            <Eyebrow>Next step</Eyebrow>
+            <Display as="h2" size="l" className="mt-6">
+              Open a conversation.
+            </Display>
+            <Body className="mt-8">
+              Briefings run forty-five minutes, under NDA, and are available
+              to named counterparties at utilities, regulators, ministries,
+              and donor programmes.
+            </Body>
+          </div>
+          <div className="flex flex-col gap-4 lg:items-end">
+            <ButtonLink href="/contact" variant="primary">
+              Request a briefing
+            </ButtonLink>
+            <InlineLink href="/solutions" variant="arrow">
+              Review the modules
+            </InlineLink>
+          </div>
+        </div>
+      </Section>
     </main>
   );
 }

@@ -8,20 +8,6 @@ export const FIRM_DESCRIPTION =
 /** Institutional mailboxes. */
 export const EMAIL_HELLO = "hello@noorinsight.co";
 export const EMAIL_BRIEFING = "briefings@noorinsight.co";
-export const EMAIL_PARTNERSHIPS = "partnerships@noorinsight.co";
-
-/**
- * TODO(D4): these legacy constants keep the existing privacy / terms /
- * security / solutions pages compiling until Deliverable 4 rewrites their
- * copy against the new positioning. They should not be used in any new code.
- */
-export const EMAIL_SUPPORT = EMAIL_HELLO;
-export const PRODUCT_PLATFORM_NAME = "Noor Insight";
-/**
- * TODO(D3): legacy home-hero string; retired when the home page is
- * rewritten in Deliverable 3.
- */
-export const BRAND_STATEMENT = FIRM_DESCRIPTION;
 
 const DEFAULT_PUBLIC_URL = "http://localhost:3000";
 

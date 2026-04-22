@@ -1,91 +1,156 @@
 import type { Metadata } from "next";
-import { SectionHeading } from "@/components/marketing/section-heading";
-import { ButtonLink } from "@/components/ui/button-link";
-import { useCasesMegaMenuItems } from "@/lib/use-cases-mega-menu";
+import {
+  Body,
+  ButtonLink,
+  Display,
+  Eyebrow,
+  InlineLink,
+  Lede,
+  Section,
+} from "@/components/ds";
 
 export const metadata: Metadata = {
   title: "Use cases",
   description:
-    "Noor Insight reference patterns for revenue protection, network operations, field digitization, and governance-ready reporting in emerging-market electricity utilities.",
+    "Reference patterns for how Noor Insight engagements are scoped: commercial loss containment, operational reviews under stress, regulator- and donor-ready reporting.",
 };
 
-const patterns = [
+type Pattern = {
+  id: string;
+  title: string;
+  problem: string;
+  posture: string;
+};
+
+const patterns: readonly Pattern[] = [
   {
-    title: "Commercial loss containment",
-    body: "When non-technical losses dominate the narrative, leadership needs a reconciled story that connects metering posture, billing integrity, and field verification, so capital can flow to interventions that move the curve.",
+    id: "commercial-loss-containment",
+    title: "Commercial-loss containment",
+    problem:
+      "Non-technical losses dominate the narrative, but the story behind the headline percentage is thin — which feeders, which tariff bands, which connection types.",
+    posture:
+      "We reconcile metering posture, billing integrity, and field verification into a single monthly account. The output is a defensible story that shows where capital has moved the curve and where it has not.",
   },
   {
-    title: "Service continuity under stress",
-    body: "Outages and constrained capacity erode legitimacy as fast as they erode revenue. Operations teams need a single operational picture that links incidents, crews, and customer impact for rapid coordination.",
+    id: "operational-review-under-stress",
+    title: "Operational reviews under stress",
+    problem:
+      "Outages and constrained capacity erode legitimacy as fast as they erode revenue. Operations and commercial teams often see different numbers for the same feeder.",
+    posture:
+      "One operational picture that links incidents, crews, and customer impact. Monthly reviews with a single set of figures for leadership, regulator, and donor audiences.",
   },
   {
-    title: "Donor- and regulator-grade reporting",
-    body: "Development finance and regulatory oversight both punish inconsistency. Reporting packs should carry definitions, sources, and change history, so the same numbers survive scrutiny across audiences.",
+    id: "regulator-donor-reporting",
+    title: "Regulator- and donor-ready reporting",
+    problem:
+      "Oversight audiences ask different questions — technical loss attribution, connection growth, collection ratios, tariff pass-through — but the underlying record needs to agree across every report.",
+    posture:
+      "Reporting packs produced from the operational record, not a second spreadsheet. Definitions fixed, methodology documented, change history visible. The same number survives the audit.",
   },
-] as const;
+  {
+    id: "modernization-after-pilot",
+    title: "Modernization after a pilot",
+    problem:
+      "A successful pilot needs to survive the transition to steady-state operations, with the controls, training, and documentation the utility’s procurement and audit functions will require.",
+    posture:
+      "Phased scaling aligned to procurement windows and donor disbursement milestones. Controls and acceptance criteria carry over from pilot to programme.",
+  },
+  {
+    id: "new-connection-programmes",
+    title: "New-connection programmes",
+    problem:
+      "Access expansion is counted in connections, but the underlying register often drifts — one customer carries two meters, or one meter serves multiple households.",
+    posture:
+      "Customer and meter records reconciled against the field record before the connection count becomes a published figure. The register is the source of the number, not a summary of it.",
+  },
+  {
+    id: "tariff-and-cost-of-service",
+    title: "Tariff and cost-of-service reviews",
+    problem:
+      "Tariff reviews depend on a defensible cost-of-service base, but the inputs — losses, collections, capital deployed — often come from adjacent spreadsheets that cannot be audited together.",
+    posture:
+      "A reconciled base for the filing, with each input traceable to the operational system that produced it. The utility’s submission and the regulator&apos;s analysis can agree on the same starting point.",
+  },
+];
 
 export default function UseCasesPage() {
   return (
-    <main className="border-b border-navy/10 bg-panel">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <SectionHeading
-          eyebrow="Use cases"
-          title="Outcomes-first narratives for partners and funders"
-          lead="These patterns reflect how utilities and public enterprises typically engage us: not as software shopping, but as programs where accountability, controls, and measurable outcomes are explicit from day one."
-        />
+    <main>
+      <Section rhythm="loose">
+        <Eyebrow>Use cases</Eyebrow>
+        <Display as="h1" size="l" className="mt-6">
+          Six reference patterns for scoping an engagement.
+        </Display>
+        <Lede className="mt-8">
+          These patterns describe how utilities, regulators, and donor
+          programmes typically engage us. They are deliberately abstract:
+          we do not publish named clients, testimonials, or case studies
+          on this site.
+        </Lede>
+      </Section>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-[11px] font-semibold uppercase tracking-[0.26em] text-dgray/50">
-          Audiences & contexts
-        </p>
-        <ul className="mt-6 grid gap-5 sm:gap-6 lg:grid-cols-2">
-          {useCasesMegaMenuItems.map((item) => (
+      <Section topRule rhythm="standard">
+        <ol className="flex flex-col divide-y divide-line-soft border-y border-line">
+          {patterns.map((p, i) => (
             <li
-              key={item.id}
-              id={item.id}
-              className="scroll-mt-24 rounded-2xl border border-navy/[0.08] bg-lgray/50 p-6 shadow-sm ring-1 ring-navy/[0.03] sm:p-7"
+              key={p.id}
+              id={p.id}
+              className="scroll-mt-24 grid gap-8 py-12 lg:grid-cols-[180px_1fr_1fr] lg:gap-12"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">Audience</p>
-              <h3 className="mt-2 text-lg font-semibold tracking-tight text-navy sm:text-xl">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-dgray/80">{item.description}</p>
+              <div>
+                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-accent">
+                  Pattern {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className="mt-3 font-serif text-xl font-normal leading-[1.25] tracking-[-0.005em] text-ink sm:text-2xl">
+                  {p.title}
+                </h2>
+              </div>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                  Problem
+                </div>
+                <p className="mt-3 max-w-[52ch] text-small leading-[1.65] text-ink-2">
+                  {p.problem}
+                </p>
+              </div>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                  Engagement posture
+                </div>
+                <p className="mt-3 max-w-[52ch] text-small leading-[1.65] text-ink-2">
+                  {p.posture}
+                </p>
+              </div>
             </li>
           ))}
-        </ul>
+        </ol>
+      </Section>
 
-        <div id="reference-patterns" className="scroll-mt-24 pt-16">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-dgray/50">
-            Reference patterns
-          </p>
-          <ol className="mt-8 space-y-6">
-            {patterns.map((p, idx) => (
-              <li
-                key={p.title}
-                className="rounded-2xl border border-navy/[0.08] bg-lgray/50 p-7 shadow-sm ring-1 ring-navy/[0.03] sm:p-8"
-              >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-navy/10 bg-panel text-sm font-bold tabular-nums text-navy">
-                    {idx + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-tight text-navy">{p.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-dgray/82">{p.body}</p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+      <Section topRule rhythm="standard">
+        <div className="grid gap-10 lg:grid-cols-[2fr_1fr] lg:items-end">
+          <div>
+            <Eyebrow>Scoping a conversation</Eyebrow>
+            <Display as="h2" size="l" className="mt-6">
+              The first meeting is a briefing, not a pitch.
+            </Display>
+            <Body className="mt-8">
+              If one of these patterns resembles the work in front of you,
+              the fastest way to test a fit is a structured briefing. We
+              arrive with questions, not slides. By the end of the
+              conversation we either agree on a diagnostic brief, or we
+              agree there is not an engagement to be had.
+            </Body>
+          </div>
+          <div className="flex flex-col gap-4 lg:items-end">
+            <ButtonLink href="/contact" variant="primary">
+              Request a briefing
+            </ButtonLink>
+            <InlineLink href="/solutions" variant="arrow">
+              Review the modules
+            </InlineLink>
+          </div>
         </div>
-
-        <div className="mt-14 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/contact" variant="primary" className="px-6 py-3">
-            Schedule a walkthrough
-          </ButtonLink>
-          <ButtonLink href="/solutions" variant="secondary" className="px-6 py-3">
-            Solution areas
-          </ButtonLink>
-        </div>
-      </div>
+      </Section>
     </main>
   );
 }

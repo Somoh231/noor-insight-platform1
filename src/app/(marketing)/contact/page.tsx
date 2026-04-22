@@ -1,112 +1,87 @@
 import type { Metadata } from "next";
-import { SectionHeading } from "@/components/marketing/section-heading";
-import { ButtonLink } from "@/components/ui/button-link";
-import { EMAIL_BRIEFING, EMAIL_HELLO, EMAIL_PARTNERSHIPS } from "@/lib/constants";
-
-const briefingSubject = encodeURIComponent("Noor Insight: briefing request");
+import { Body, Display, Eyebrow, InlineLink, Lede, Section } from "@/components/ds";
+import { ContactForm } from "@/components/marketing/contact-form";
+import { EMAIL_BRIEFING, EMAIL_HELLO } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Request a structured briefing with Noor Insight. We work with utilities, ministries, regulators, and development partners.",
+    "Request a structured briefing with Noor Insight. Open to named counterparties at utilities, regulators, ministries, and donor programmes.",
 };
 
 export default function ContactPage() {
   return (
-    <main className="border-b border-navy/10 bg-panel">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <SectionHeading
-          eyebrow="Contact"
-          title="Request a structured briefing"
-          lead="Share your context (utility, role, and urgency). We will respond with a concise agenda and any prerequisites for a productive first conversation."
-        />
+    <main>
+      <Section rhythm="loose">
+        <Eyebrow>Contact</Eyebrow>
+        <Display as="h1" size="l" className="mt-6">
+          Request a structured briefing.
+        </Display>
+        <Lede className="mt-8">
+          Briefings run forty-five minutes and are delivered under NDA to
+          named counterparties at utilities, regulators, ministries, and
+          donor programmes. Please share enough context for us to arrive
+          with relevant questions, not slides.
+        </Lede>
+      </Section>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:items-start">
-          <aside className="rounded-lg border border-navy/10 bg-lgray p-8 shadow-card lg:col-span-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
-              Direct channels
-            </p>
-            <dl className="mt-6 space-y-6 text-sm">
+      <Section topRule rhythm="standard">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <div>
+            <Eyebrow>Direct channels</Eyebrow>
+            <dl className="mt-8 space-y-8 text-small leading-[1.6]">
               <div>
-                <dt className="font-semibold text-navy">Briefings &amp; demos</dt>
-                <dd className="mt-1">
-                  <a
-                    className="text-dgray/85 underline decoration-navy/20 underline-offset-4 transition hover:text-navy hover:decoration-navy/40"
-                    href={`mailto:${EMAIL_BRIEFING}?subject=${briefingSubject}`}
-                  >
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                  Briefings
+                </dt>
+                <dd className="mt-2 text-ink">
+                  <InlineLink href={`mailto:${EMAIL_BRIEFING}`}>
                     {EMAIL_BRIEFING}
-                  </a>
+                  </InlineLink>
                 </dd>
-                <dd className="mt-2 text-xs leading-relaxed text-dgray/70">
-                  Fastest path for evaluation access, agenda prep, and procurement-aligned walkthroughs.
+                <dd className="mt-2 text-ink-2">
+                  Fastest path for evaluation and procurement-aligned walkthroughs.
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-navy">General contact</dt>
-                <dd className="mt-1">
-                  <a
-                    className="text-dgray/85 underline decoration-navy/20 underline-offset-4 transition hover:text-navy hover:decoration-navy/40"
-                    href={`mailto:${EMAIL_HELLO}`}
-                  >
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                  General contact
+                </dt>
+                <dd className="mt-2 text-ink">
+                  <InlineLink href={`mailto:${EMAIL_HELLO}`}>
                     {EMAIL_HELLO}
-                  </a>
+                  </InlineLink>
                 </dd>
-                <dd className="mt-2 text-xs leading-relaxed text-dgray/70">
-                  Scheduling, media, and introductory inquiries.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-navy">Strategic partnerships</dt>
-                <dd className="mt-1">
-                  <a
-                    className="text-dgray/85 underline decoration-navy/20 underline-offset-4 transition hover:text-navy hover:decoration-navy/40"
-                    href={`mailto:${EMAIL_PARTNERSHIPS}`}
-                  >
-                    {EMAIL_PARTNERSHIPS}
-                  </a>
-                </dd>
-                <dd className="mt-2 text-xs leading-relaxed text-dgray/70">
-                  Ministries, donors, integrators, and multi-utility programs.
+                <dd className="mt-2 text-ink-2">
+                  Scheduling and introductory inquiries.
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-navy">Response standard</dt>
-                <dd className="mt-1 leading-relaxed text-dgray/80">
-                  Two business days for initial scheduling, faster when flagged as time-sensitive
-                  procurement.
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                  Response standard
+                </dt>
+                <dd className="mt-2 text-ink-2">
+                  Two business days for initial scheduling. Faster when
+                  flagged as time-sensitive to a procurement window or board
+                  date.
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-navy">Meetings</dt>
-                <dd className="mt-1 leading-relaxed text-dgray/80">
-                  Virtual and in-person sessions by arrangement (Monrovia · regional hubs).
-                </dd>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                  Offices
+                </dt>
+                <dd className="mt-2 text-ink-2">Monrovia · London</dd>
               </div>
             </dl>
-          </aside>
-
-          <div className="lg:col-span-7">
-            <div className="rounded-lg border border-navy/10 bg-lgray/60 p-8 sm:p-9">
-              <p className="text-sm font-semibold text-navy">What to include in your note</p>
-              <ul className="mt-4 list-inside list-disc space-y-2 text-sm leading-relaxed text-dgray/85">
-                <li>Utility / institution name and jurisdiction</li>
-                <li>Primary objective (loss reduction, controls, reporting, etc.)</li>
-                <li>Current systems landscape (even if partial)</li>
-                <li>Timeline constraints (procurement windows, board dates)</li>
-              </ul>
-              <div className="mt-8">
-                <ButtonLink
-                  href={`mailto:${EMAIL_BRIEFING}?subject=${briefingSubject}`}
-                  variant="primary"
-                  className="px-6 py-3"
-                >
-                  Compose briefing email
-                </ButtonLink>
-              </div>
-            </div>
+            <Body className="mt-10">
+              Your message is reviewed by a named partner and is not
+              forwarded outside the firm without written consent.
+            </Body>
           </div>
+
+          <ContactForm />
         </div>
-      </div>
+      </Section>
     </main>
   );
 }

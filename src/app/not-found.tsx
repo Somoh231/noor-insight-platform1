@@ -1,5 +1,5 @@
+import { ButtonLink } from "@/components/ds";
 import { MarketingShell } from "@/components/layout/marketing-shell";
-import { ButtonLink } from "@/components/ui/button-link";
 import { APP_NAME } from "@/lib/constants";
 
 export default function NotFound() {

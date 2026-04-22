@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { ButtonLink } from "@/components/ui/button-link";
+import { Button, ButtonLink } from "@/components/ds";
 import { APP_NAME } from "@/lib/constants";
 
 export default function RootError({
@@ -14,28 +13,30 @@ export default function RootError({
 }) {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   }, [error]);
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-6 bg-lgray px-6 py-16 text-center">
-      <div className="max-w-md space-y-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-dgray/50">
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-6 bg-page px-6 py-24 text-center">
+      <div className="max-w-md space-y-4">
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
           Something went wrong
         </p>
-        <h1 className="text-2xl font-semibold tracking-tight text-navy">
-          We could not load this page
+        <h1 className="font-serif text-3xl font-normal leading-[1.2] tracking-[-0.01em] text-ink">
+          We could not load this page.
         </h1>
-        <p className="text-sm leading-relaxed text-dgray/70">
-          A temporary error occurred. You can retry, or return to the marketing site
-          while we recover.
+        <p className="text-body leading-[1.7] text-ink-2">
+          A temporary error occurred. Retry, or return to the main site.
         </p>
         {error.digest ? (
-          <p className="text-[11px] tabular-nums text-dgray/45">Reference: {error.digest}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+            Reference · {error.digest}
+          </p>
         ) : null}
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         <Button type="button" variant="primary" onClick={() => reset()}>
           Try again
         </Button>
