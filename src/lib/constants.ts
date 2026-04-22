@@ -6,8 +6,8 @@ export const FIRM_DESCRIPTION =
   "Noor Insight is a utility systems and advisory firm. We partner with public electricity providers in emerging markets on revenue integrity, operational visibility, and accountable reporting.";
 
 /** Institutional mailboxes. */
-export const EMAIL_HELLO = "hello@noorinsight.co";
-export const EMAIL_BRIEFING = "briefings@noorinsight.co";
+export const EMAIL_HELLO = "hello@noorinsight.com";
+export const EMAIL_BRIEFING = "briefings@noorinsight.com";
 
 const DEFAULT_PUBLIC_URL = "http://localhost:3000";
 

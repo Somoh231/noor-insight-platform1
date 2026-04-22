@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  Badge,
   Body,
   ButtonLink,
   Display,
@@ -100,26 +99,55 @@ export default function AboutPage() {
         </ol>
       </Section>
 
-      {/*
-        TODO(team): Replace this block with the named partners, senior
-        advisors, and engagement leads when the team is finalised. Until
-        then the section is rendered with a visible "Forthcoming" badge
-        so no reader infers a roster.
-      */}
       <Section id="people" topRule rhythm="standard">
-        <Kicker>People</Kicker>
-        <Display as="h2" size="md" className="mt-4 max-w-[26ch]">
-          Named leadership and advisors.
+        <Kicker>Founding team</Kicker>
+        <Display as="h2" size="md" className="mt-4 max-w-[28ch]">
+          Practitioners in energy systems and public-sector delivery.
         </Display>
         <Body className="mt-6">
-          Noor Insight is led by a small team of practitioners with
-          backgrounds in utility operations, public-sector advisory, and
-          regulated reporting. The named roster — partners, senior advisors,
-          and engagement leads — will be published on this page before the
-          first phase-one engagement commences.
+          Noor Insight is built by two founders whose prior work sits on
+          either side of the same problem: the quantitative analysis of
+          power systems, and the operational delivery of public-sector
+          programmes. Named senior advisors and engagement leads will be
+          added here ahead of the first phase-one engagement.
         </Body>
-        <div className="mt-8">
-          <Badge variant="accent">Forthcoming · published before first engagement</Badge>
+
+        <div className="mt-10 grid grid-cols-1 gap-px border border-rule bg-rule lg:grid-cols-2">
+          <FounderCard
+            name="Mahmoud Mobir"
+            subtitle="Energy systems modelling · power-sector analysis"
+            bio="Senior Analyst in the Energy & Climate practice at Rhodium Group, where he leads the global analysis of the electric power transition and maintains Rhodium's Global Energy Model."
+            prior={[
+              "Energy analyst, GRTgaz — modelling European and French energy systems",
+              "Research, Schneider Electric — renewables and grid reliability in a decarbonised power mix",
+            ]}
+            education={[
+              "M.A.S., Energy Systems Optimization — École des Mines, Paris",
+              "M.Sc., Energy Dynamics — INP Toulouse",
+            ]}
+            profile={{
+              label: "rhg.com/team/mahmoud-mobir",
+              href: "https://rhg.com/team/mahmoud-mobir/",
+            }}
+          />
+          <FounderCard
+            name="Mohammed Soumaoro"
+            subtitle="Public-sector delivery · software for African markets"
+            bio="Co-founder of Neldon, a software studio serving African markets, and previously a programme officer in the Ministry of Health of the Republic of Liberia. Alumnus of African Leadership University; recipient of the Diana Award for social impact."
+            prior={[
+              "Member operations, BioForward — 220+ life-sciences members",
+              "Programme officer, Ministry of Health, Monrovia",
+              "Co-founder, Neldon — software development for African markets",
+            ]}
+            education={[
+              "B.A., African Leadership University (Kigali / Mauritius)",
+            ]}
+            honours={["Diana Award · social impact"]}
+            profile={{
+              label: "linkedin.com/in/somoh231",
+              href: "https://www.linkedin.com/in/somoh231",
+            }}
+          />
         </div>
       </Section>
 
@@ -147,5 +175,72 @@ export default function AboutPage() {
         </div>
       </Section>
     </main>
+  );
+}
+
+function FounderCard({
+  name,
+  subtitle,
+  bio,
+  prior,
+  education,
+  honours,
+  profile,
+}: {
+  name: string;
+  subtitle: string;
+  bio: string;
+  prior: readonly string[];
+  education: readonly string[];
+  honours?: readonly string[];
+  profile: { label: string; href: string };
+}) {
+  return (
+    <article className="flex flex-col bg-paper p-7 sm:p-9">
+      <Kicker>Founder</Kicker>
+      <h3 className="mt-3 font-serif text-[26px] font-normal leading-[1.15] tracking-[-0.01em] text-ink sm:text-[30px]">
+        {name}
+      </h3>
+      <p className="mt-2 font-mono text-[11px] uppercase tracking-kicker text-muted">
+        {subtitle}
+      </p>
+
+      <p className="mt-5 max-w-[48ch] text-sm leading-[1.65] text-ink-soft">
+        {bio}
+      </p>
+
+      <dl className="mt-7 grid grid-cols-[110px_1fr] gap-x-5 gap-y-[10px] border-t border-rule pt-5 text-sm">
+        <DlRow label="Prior" items={prior} />
+        <DlRow label="Education" items={education} />
+        {honours?.length ? <DlRow label="Honours" items={honours} /> : null}
+      </dl>
+
+      <div className="mt-7 border-t border-rule pt-4">
+        <InlineLink href={profile.href} variant="ember">
+          {profile.label} →
+        </InlineLink>
+      </div>
+    </article>
+  );
+}
+
+function DlRow({
+  label,
+  items,
+}: {
+  label: string;
+  items: readonly string[];
+}) {
+  return (
+    <>
+      <dt className="pt-[2px] font-mono text-[10px] uppercase tracking-kicker text-muted">
+        {label}
+      </dt>
+      <dd className="flex flex-col gap-[6px] text-ink-soft">
+        {items.map((it) => (
+          <span key={it}>{it}</span>
+        ))}
+      </dd>
+    </>
   );
 }

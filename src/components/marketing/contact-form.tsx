@@ -55,7 +55,7 @@ export function ContactForm() {
           kind: "error",
           message:
             body.message ??
-            "We could not deliver your message. Please email briefings@noorinsight.co directly.",
+            "We could not deliver your message. Please email briefings@noorinsight.com directly.",
         });
         return;
       }
@@ -68,7 +68,7 @@ export function ContactForm() {
       setStatus({
         kind: "error",
         message:
-          "We could not reach the submission endpoint. Please email briefings@noorinsight.co directly.",
+          "We could not reach the submission endpoint. Please email briefings@noorinsight.com directly.",
       });
     }
   }

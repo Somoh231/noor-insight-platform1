@@ -81,7 +81,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         message:
-          "Contact form not yet configured. Please email briefings@noorinsight.co directly.",
+          "Contact form not yet configured. Please email briefings@noorinsight.com directly.",
       },
       { status: 503 }
     );
@@ -115,7 +115,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           message:
-            "Contact transport not configured on this deployment. Please email briefings@noorinsight.co directly.",
+            "Contact transport not configured on this deployment. Please email briefings@noorinsight.com directly.",
         },
         { status: 503 }
       );
@@ -157,7 +157,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         message:
-          "We could not deliver your message. Please email briefings@noorinsight.co directly.",
+          "We could not deliver your message. Please email briefings@noorinsight.com directly.",
       },
       { status: 502 }
     );
