@@ -74,4 +74,17 @@
     font-variant-numeric: tabular-nums lining-nums;
     font-feature-settings: "tnum" 1, "lnum" 1;
   }
+
+  /**
+   * Motion: respect prefers-reduced-motion. When the user has opted out,
+   * suppress the enter animation entirely (static state, no fade, no
+   * translate, no delay).
+   */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }
