@@ -332,10 +332,6 @@ you attach one.
    Please confirm the target mailbox. Without a real endpoint configured,
    the form route returns a 503 with an honest "not configured" message
    rather than pretending to send.
-6. **Legal footer text.** Footer today mentions "registered in Liberia and
-   the United Kingdom." The design bundle ships a placeholder reg-number
-   `REG. NO. XXXXXXXX`. If the firm's real registration details exist,
-   send them; otherwise the footer keeps a visible `XXXXXXXX` placeholder.
 
 ---
 

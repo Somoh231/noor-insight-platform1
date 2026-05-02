@@ -11,9 +11,6 @@ import {
  * three link columns, an inline briefing form on the left. No newsletter
  * CTA despite the reference design — briefing remains the single
  * call-to-action per the positioning brief.
- *
- * TODO(legal): replace "Reg. no. forthcoming" with real Liberia / UK
- * registration details once available.
  */
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -73,8 +70,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-paper/12 pt-5 font-mono text-[11px] text-paper/50 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {year} {APP_NAME.toUpperCase()} LTD.</span>
-          <span>Reg. no. forthcoming · Liberia / United Kingdom</span>
+          <span>© {year} {APP_NAME.toUpperCase()}</span>
           <span>Reconciled quarterly</span>
         </div>
       </div>

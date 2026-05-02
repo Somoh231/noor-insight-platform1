@@ -65,7 +65,7 @@ design system.
 |---|---|---|
 | `src/components/layout/marketing-shell.tsx` | Navy bg, card shadows, inline mega-nav wiring | Minimal skip-to-content + `SiteHeader` + `SiteFooter`, all over warm paper. |
 | `src/components/layout/site-header.tsx` | 80 px nav with card shadow-on-scroll, navy chrome, three CTA buttons, `EnterpriseMegaNavDesktop` and mobile accordion with six mega-menu panels | 72 px nav, hairline bottom rule, no blur, no shadow, no mega menus. Three primary links (Solutions / Use cases / About), one understated "Request briefing →" link with amber-underline, mobile drawer with keyboard support and body-scroll lock. |
-| `src/components/layout/site-footer.tsx` | Navy background + navy-on-navy footer with trust strip, "Powered by Noor Insight" tagline, newsletter-adjacent copy | Ink-background institutional footer; amber period on the wordmark; firm / engagement / offices columns; legal nav; visible "Reg. no. forthcoming · Liberia / United Kingdom" placeholder (TODO tracked). |
+| `src/components/layout/site-footer.tsx` | Navy background + navy-on-navy footer with trust strip, "Powered by Noor Insight" tagline, newsletter-adjacent copy | Ink-background institutional footer; amber period on the wordmark; firm / engagement / offices columns; legal nav; understated "Reconciled quarterly" mono line. |
 | `src/components/brand/brand-logo.tsx` | `<Image>` of a bitmap lockup PNG with eager priority + wordmark fallback | Typographic (no image): serif "Noor" + amber period + mono "Insight" eyebrow. Tone option for dark surfaces. |
 | `public/brand/*.png` | Navy + gold bitmap marks | Replaced by `public/brand/noor-wordmark.svg`, `noor-lockup.svg`, `noor-monogram.svg` — self-contained SVGs set in Source Serif 4 with the amber period. |
 | `public/favicon.svg` | Navy square + gold checkmark | Warm paper + serif "N" + amber hairline under-rule. |
@@ -199,7 +199,6 @@ confirmation.
 |---|---|---|
 | `TODO(cite)` — Liberia / LEC citations | `src/components/marketing/home/home-at-stake.tsx` | Attested public-source URLs and publication dates for the five numbers. Pending your LEC / LERC conversation week of 2026-04-27. |
 | `TODO(team)` — named leadership / advisors | `src/app/(marketing)/about/page.tsx` | Partner roster, senior advisors, engagement leads. Rendered as a visible "Forthcoming" badge until supplied. |
-| `TODO(legal)` — registration number | `src/components/layout/site-footer.tsx` | Real Liberia / UK registration numbers. Currently renders "Reg. no. forthcoming" in the footer. |
 | Contact transport — SMTP credentials | `/api/contact` route + `.env.example` | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` in the production environment. Without them, `/api/contact` returns 503 in production and logs in development. |
 
 None of these block shipping Deliverables 1–5. They are points where the
