@@ -20,7 +20,7 @@ const founders: readonly Founder[] = [
     name: "Mohammed Soumaoro",
     subtitle: "Co-founder, Neldon · Former Ministry of Health, Liberia",
     body:
-      "Public-sector delivery and software for African markets. Co-founded Neldon (software for African markets); programme officer at Liberia's Ministry of Health; member operations at BioForward. B.A., African Leadership University; M.S., Social Policy & Data Analytics, University of Pennsylvania. Diana Award for social impact.",
+      "Public-sector delivery and software for African markets. Co-founded Neldon (software for African markets); programme officer at Liberia's Ministry of Health; member operations at BioForward. M.S., Social Policy & Data Analytics, University of Pennsylvania; B.A., African Leadership University. Diana Award for social impact.",
     linkedInUrl: "https://www.linkedin.com/in/somoh231",
   },
 ];

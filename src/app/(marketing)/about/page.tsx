@@ -159,8 +159,8 @@ export default function AboutPage() {
               "Co-founder, Neldon — software development for African markets",
             ]}
             education={[
-              "B.A., International Business — African Leadership University (Kigali / Mauritius)",
               "M.S., Social Policy & Data Analytics — University of Pennsylvania",
+              "B.A., International Business — African Leadership University (Kigali / Mauritius)",
             ]}
             honours={["Diana Award · social impact"]}
             linkedInUrl="https://www.linkedin.com/in/somoh231"
